@@ -38,10 +38,10 @@
     };
     raise {
       bindings = <
-  &kp TILDE &trans &trans &trans &trans &trans                          &RGB_ON   &RGB_OFF &trans &kp MINUS &kp EQUAL &kp C_PLAY_PAUSE
-  &trans    &trans &trans &trans &trans &trans                          &RGB_TOG   &RGB_EFF &trans &trans    &trans    &kp BSLH
-            &trans &trans &trans &trans &kp LBKT                        &kp RBKT &trans &trans &trans    &trans
-                                 &trans &trans &trans &trans    &trans  &trans   &trans &trans
+  &kp TILDE &trans &trans &trans &trans &trans                          &RGB       &trans &trans &kp MINUS &kp EQUAL &kp C_PLAY_PAUSE
+  &trans    &trans &trans &trans &trans &trans                          &RGB_TOG   &trans &trans &trans    &trans    &kp BSLH
+            &trans &trans &trans &trans &kp LBKT                        &kp RBKT   &trans &trans &trans    &trans
+                                 &trans &trans &trans &trans    &trans  &trans     &trans &trans
       >;
     };
 

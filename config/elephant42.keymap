@@ -50,7 +50,7 @@
     raise {
       bindings = <
   &kp TILDE &trans &trans &trans &trans &trans                          &trans   &trans &trans &kp MINUS &kp EQUAL &kp C_PLAY_PAUSE
-  &trans    &trans &trans &trans &trans &trans                          &kp C_BACKLIGHT_TOGGLE   &trans &trans &kp C_VOL_DOWN    &kp C_VOL_UP    &kp BSLH
+  &trans    &trans &trans &trans &trans &trans                          &kp C_BACKLIGHT_TOGGLE   &trans &trans &kp C_VOLUME_DOWN    &kp C_VOLUME_UP    &kp BSLH
             &trans &trans &trans &trans &kp LBKT                        &kp RBKT &trans &trans &trans    &trans
                                  &trans &trans &trans &trans    &trans  &trans   &trans &trans
       >;

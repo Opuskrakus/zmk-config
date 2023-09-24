@@ -44,7 +44,7 @@
   &lt RAIS ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp DEL 
   &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
                 &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
-                &kp LSHFT &mo LOWR &kp LGUI &kp SPACE       &kp BSPC  &mt LCTRL ENTER   &mo RAIS &kp LALT
+                &kp LSHFT &mo LOWR &kp LGUI &mt LALT ENTER        &kp BSPC  &mt LCTRL SPACE   &mo RAIS &kp LALT
       >;
     };
 

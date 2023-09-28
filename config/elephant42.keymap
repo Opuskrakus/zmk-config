@@ -21,6 +21,8 @@
 #define SYMB 3
 #define ADJT 4
 
+//Kolla upp mod type och repeating https://www.youtube.com/watch?v=NAUxTR4vGys
+
 / {
 
   // Activate ADJUST layer by pressing raise and lower

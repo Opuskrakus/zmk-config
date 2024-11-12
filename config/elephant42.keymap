@@ -46,8 +46,8 @@
             //              | SHFT| GUI | LWR | SPC |   | BKSP| ENT  | RAIS| ALT |
 
       bindings = <
-  &lt RAIS ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp DEL 
-  &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+  &lt RAIS ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
+  &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
                 &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
                 &kp LSHFT &kp LGUI &mo LOWR  &mt LALT ENTER              &kp SPACE    &mo RAIS &kp BSPC &kp LALT
       >;
@@ -55,7 +55,7 @@
 
     lower {
       bindings = <
-  &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                               &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp C_PP
+  &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                               &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &trans
   &mo SYMB   &kp LBKT &kp SV_LBRC &kp SV_RBRC &kp SV_LBKT &kp SV_RBKT       &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
             &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT                  &kp RBKT &trans   &trans &trans    &trans
                                  &trans &trans &trans &trans    &mt LSHFT SPACE &trans   &trans   &trans

@@ -22,11 +22,11 @@
 #define ADJT 3
 #define BLT 4
 
-#define S_UNDO &kp C_AC_UNDO
-#define S_CUT &kp C_AC_CUT
-#define S_COPY &kp C_AC_COPY
-#define S_PASTE &kp C_AC_PASTE
-#define S_REDO &kp C_AC_REDO
+//#define S_UNDO &kp C_AC_UNDO
+//#define S_CUT &kp C_AC_CUT
+//#define S_COPY &kp C_AC_COPY
+//#define S_PASTE &kp C_AC_PASTE
+//#define S_REDO &kp C_AC_REDO
 
 //Kolla upp mod type och repeating https://www.youtube.com/watch?v=NAUxTR4vGys
 

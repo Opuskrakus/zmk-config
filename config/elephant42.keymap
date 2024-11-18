@@ -17,20 +17,26 @@
 #include "keys_sv.h"
 
 #define BASE 0
-#define LOWR 1
-#define RAIS 2
-#define SYMB 3
-#define ADJT 4
+#define NUM 1
+#define SYM 2
+#define ADJT 3
+#define BLT 4
+
+#define S_UNDO &kp C_AC_UNDO
+#define S_CUT &kp C_AC_CUT
+#define S_COPY &kp C_AC_COPY
+#define S_PASTE &kp C_AC_PASTE
+#define S_REDO &kp C_AC_REDO
 
 //Kolla upp mod type och repeating https://www.youtube.com/watch?v=NAUxTR4vGys
 
 / {
 
-  // Activate ADJUST layer by pressing raise and lower
+  // Activate ADJUST layer by pressing SYM and NUM
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        adjust_layer {
-            if-layers = <LOWR RAIS>;
+        ADJT_layer {
+            if-layers = <NUM SYM>;
             then-layer = <ADJT>;
         };
     };
@@ -43,57 +49,63 @@
             // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | DEL |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  Ö  |  Ä  |
             //        |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  -  |
-            //              | SHFT| GUI | LWR | SPC |   | BKSP| ENT  | RAIS| ALT |
+            //              | SHFT| GUI | NUM | SPC |   | BKSP| ENT  | SYM| ALT |
 
       bindings = <
-  &lt RAIS ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
+  &lt SYM ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
   &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
                 &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
-                &kp LSHFT &kp LGUI &mo LOWR  &mt LALT ENTER              &kp SPACE    &mo RAIS &kp BSPC &kp LALT
+                &kp LSHFT &kp LGUI &mo NUM  &mt LALT ENTER              &kp SPACE    &mo SYM &kp BSPC &kp LALT
       >;
     };
 
-    lower {
+    NUM_layer {
       bindings = <
-  &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                               &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &trans
-  &mo SYMB   &kp LBKT &kp SV_LBRC &kp SV_RBRC &kp SV_LBKT &kp SV_RBKT       &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-            &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT                  &kp RBKT &trans   &trans &trans    &trans
+  &kp GRAVE &kp N1 &kp KP_PLUS &kp KP_MINUS &kp EQUAL &kp SV_CARET   &kp SV_PRCNT   &kp N7     &kp N8    &kp N9    &kp KP_MULTIPLY  &kp BSPC 
+  &mo BLT  &kp LGUI &kp LALT  &kp LCTRL &kp  LSHFT &kp SV_HASH       &kp DOT        &kp N0    &kp N1    &kp N2    &kp N3    &kp ENTER 
+  S_UNDO    S_CUT     S_COPY     S_PASTE    S_REDO                   &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
                                  &trans &trans &trans &trans    &mt LSHFT SPACE &trans   &trans   &trans
+//&kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT  
+
       >;
     };
-    raise {
+    SYM_layer {
       // -----------------------------------------------------------------------------------------
      //  |play |  !   |  "  |  #  |  ¤  |  )  |     |  ^  |  &  |  *  |  (  |  )  | vol+ |
     //   |next | CTRL |     |     |     |     |     |     |  ¨  |  =  |  [  |  ]  | vol- | 
    //          | SHFT |     |     |     |     |     |     |  _  |  +  |  {  |  }  |
    //                 | shi | low |  GUI| SPC |     | bks | ent | rai | lalt|
       bindings = <
-  &kp C_PP    &kp EXCL    &kp AT    &kp HASH  &kp DLLR   &kp LPAR               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
-  &kp C_NEXT  &kp MINUS   &kp PLUS  &kp UNDER &kp EQUAL  &kp LBKT               &kp RBKT     &kp CARET   &kp RET           &kp BSLH     &trans     &kp C_VOLUME_DOWN 
-                   &trans &kp RBRC  &kp PIPE  &kp TILDE  &kp LBRC               &kp RBRC     &kp AMPS    &kp LT &kp GT       &kp TILDE2
+  &kp C_PP    &kp EXCL    &kp SV_LT    &kp SV_LBKT  &kp SV_RBKT   &kp SV_GT               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
+  &kp C_NEXT  &kp MINUS   &kp PLUS  &kp SV_LPAR &kp SV_RPAR  &kp SV_AMPS               &kp LEFT     &kp DOWN    &kp UP            &kp RIGHT    &kp RETURN     &kp C_VOLUME_DOWN 
+               &kp SV_BSLH &kp SV_AT  &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE               &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
                                  &trans &trans &trans &trans                    &trans &trans &trans &trans
+
+
+
+//  &kp C_PP    &kp EXCL    &kp AT    &kp HASH  &kp DLLR   &kp LPAR               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
+//  &kp C_NEXT  &kp MINUS   &kp PLUS  &kp UNDER &kp EQUAL  &kp LBKT               &kp RBKT     &kp CARET   &kp RET           &kp BSLH     &trans     &kp C_VOLUME_DOWN 
+//                   &trans &kp RBRC  &kp PIPE  &kp TILDE  &kp LBRC               &kp RBRC     &kp AMPS    &kp LT &kp GT       &kp TILDE2
+//                                 &trans &trans &trans &trans                    &trans &trans &trans &trans
       >;
     };
-    Symbols {
+    ADJT_layer {
+      bindings = <
+            &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7    &kp NUyMBER_8                &kp NUMBER_9        &kp KP_PLUS &kp KP_DIVIDE   &kp SV_O_UMLAUT &kp KP_MINUS &trans 
+            &mo BLT  &kp LBKT  &trans &trans &kp LSHFT &trans                             &trans &kp NUMBER_0    &kp NUMBER_1    &kp NUMBER_2    &kp NUMBER_3    &kp KP_PLUS
+                      &trans &trans &trans &trans &trans  &trans                                 &kp NUMBER_4    &kp NUMBER_5    &kp NUMBER_6   &kp RETURN 
+                              &trans &trans &trans &trans                                        &trans &trans &trans &trans 
+                  
+      >;
+    };
+    BLT_layer {
   
       bindings = <
- 
-            &trans     &trans  &trans          &kp NUMBER_7    &kp NUMBER_8    &kp NUMBER_9        &kp KP_PLUS &kp KP_DIVIDE   &kp KP_MULTIPLY &kp KP_MINUS &trans &trans
-            &mo SYMB  &trans  &trans          &kp NUMBER_4    &kp NUMBER_5    &kp NUMBER_6        &kp KP_PLUS &trans &trans &trans &trans &trans 
-                       &trans  &kp NUMBER_0    &kp NUMBER_1    &kp NUMBER_2    &kp NUMBER_3        &kp RETURN &trans &trans &trans &trans &trans 
-                              &trans &trans &trans &trans                &trans &trans &trans &trans 
-                
-
-                                 
-      >;
-    };
-
-    adjust {
-      bindings = <
-  &kp TILDE &ext_power EXT_POWER_TOGGLE_CMD &trans &trans &trans &trans     &bt BT_CLR  &trans   &trans    &kp MINUS &kp EQUAL   &bt BT_CLR 
-  &trans    &trans &trans &trans &trans &bt BT_PRV                          &bt BT_NXT   &bt BT_SEL 0  &bt BT_SEL 1    &trans    &trans      &bt BT_NXT
-            &trans &trans &trans &trans &kp LBKT                            &kp RBKT &trans   &kp C_PREV  &kp C_NEXT &ext_power EXT_POWER_TOGGLE_CMD 
-                                 &trans &trans &trans &trans        &trans  &trans   &trans &trans
+                &kp TILDE &ext_power EXT_POWER_TOGGLE_CMD &trans &trans &trans &trans     &bt BT_CLR  &trans   &trans    &kp MINUS &kp EQUAL   &bt BT_CLR 
+                &trans    &trans &trans &trans &trans &bt BT_PRV                          &bt BT_NXT   &bt BT_SEL 0  &bt BT_SEL 1    &trans    &trans      &bt BT_NXT
+                          &trans &trans &trans &trans &kp LBKT                            &kp RBKT &trans   &kp C_PREV  &kp C_NEXT &ext_power EXT_POWER_TOGGLE_CMD 
+                                              &trans &trans &trans &trans        &trans  &trans   &trans &trans
+    
 
 // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |

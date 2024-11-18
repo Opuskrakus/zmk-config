@@ -79,7 +79,7 @@
     };
     adjust {
       bindings = <
-            &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7    &kp NUyMBER_8             &kp NUMBER_9 &kp KP_PLUS  &kp KP_DIVIDE  &kp SV_O_UMLAUT &kp KP_MINUS &trans 
+            &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7    &kp NUMBER_8             &kp NUMBER_9 &kp KP_PLUS  &kp KP_DIVIDE  &kp SV_O_UMLAUT &kp KP_MINUS &trans 
             &mo BLT  &kp LBKT  &trans &trans &kp LSHFT &trans                                    &trans       &kp NUMBER_0 &kp NUMBER_1   &kp NUMBER_2    &kp NUMBER_3 &kp KP_PLUS
                       &trans &trans &trans &trans &trans                                         &trans       &kp NUMBER_4 &kp NUMBER_5   &kp NUMBER_6    &kp RETURN      
                               &trans &trans &trans &trans                                        &trans       &trans       &trans         &trans 

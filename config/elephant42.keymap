@@ -22,11 +22,7 @@
 #define ADJT 3
 #define BLT 4
 
-//#define S_UNDO &kp C_AC_UNDO
-//#define S_CUT &kp C_AC_CUT
-//#define S_COPY &kp C_AC_COPY
-//#define S_PASTE &kp C_AC_PASTE
-//#define S_REDO &kp C_AC_REDO
+
 
 //Kolla upp mod type och repeating https://www.youtube.com/watch?v=NAUxTR4vGys
 
@@ -52,36 +48,36 @@
             //              | SHFT| GUI | NUM | SPC |   | BKSP| ENT  | SYM| ALT |
 
       bindings = <
-  &lt SYM ESC   &kp Q &kp W &kp E     &kp R    &kp T                    &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
-  &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                    &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
-                &kp Z &kp X &kp C     &kp V    &kp B                    &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
-                      &kp LSHFT   &kp LGUI  &kp NUM  &mt LALT ENTER     &kp SPACE &mo SYM  &kp BSPC  &kp LALT
+        &lt SYM ESC   &kp Q &kp W &kp E     &kp R    &kp T                    &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
+        &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                    &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
+                      &kp Z &kp X &kp C     &kp V    &kp B                    &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
+                            &kp LSHFT   &kp LGUI  &kp NUM  &mt LALT ENTER     &kp SPACE &mo SYM  &kp BSPC  &kp LALT
       >;
     };
 
-    NUM_layer {
+    numbers {
       bindings = <
-  &kp GRAVE &kp N1 &kp KP_PLUS &kp KP_MINUS &kp EQUAL &kp SV_CARET   &kp SV_PRCNT   &kp N7     &kp N8    &kp N9    &kp KP_MULTIPLY  &kp BSPC 
-  &mo BLT  &kp LGUI    &kp LALT  &kp LCTRL &kp LSHFT  &kp SV_HASH       &kp DOT        &kp N0    &kp N1    &kp N2    &kp N3    &kp ENTER 
-           &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT                  &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
-                                 &trans &trans &trans &trans    &mt LSHFT SPACE &trans   &trans   &trans
+        &kp GRAVE &kp N1 &kp KP_PLUS &kp KP_MINUS &kp EQUAL &kp SV_CARET   &kp SV_PRCNT   &kp N7     &kp N8    &kp N9    &kp KP_MULTIPLY  &kp BSPC 
+        &mo BLT  &kp LGUI    &kp LALT  &kp LCTRL &kp LSHFT  &kp SV_HASH       &kp DOT        &kp N0    &kp N1    &kp N2    &kp N3    &kp ENTER 
+                 &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT                  &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
+                                       &trans &trans &trans &trans    &mt LSHFT SPACE &trans   &trans   &trans
 
       >;
     };
-    SYM_layer {
+    symbols {
       // -----------------------------------------------------------------------------------------
      //  |play |  !   |  "  |  #  |  ¤  |  )  |     |  ^  |  &  |  *  |  (  |  )  | vol+ |
     //   |next | CTRL |     |     |     |     |     |     |  ¨  |  =  |  [  |  ]  | vol- | 
    //          | SHFT |     |     |     |     |     |     |  _  |  +  |  {  |  }  |
    //                 | shi | low |  GUI| SPC |     | bks | ent | rai | lalt|
       bindings = <
-  &kp C_PP    &kp EXCL    &kp SV_LT    &kp SV_LBKT  &kp SV_RBKT   &kp SV_GT               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
-  &kp C_NEXT  &kp MINUS   &kp PLUS  &kp SV_LPAR &kp SV_RPAR  &kp SV_AMPS               &kp LEFT     &kp DOWN    &kp UP            &kp RIGHT    &kp ENTER     &kp C_VOLUME_DOWN 
-               &kp SV_BSLH &kp SV_AT  &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE               &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
-                                 &trans &trans &trans &trans                    &trans &trans &trans &trans
+        &kp C_PP    &kp EXCL    &kp SV_LT    &kp SV_LBKT  &kp SV_RBKT   &kp SV_GT               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
+        &kp C_NEXT  &kp MINUS   &kp PLUS  &kp SV_LPAR &kp SV_RPAR  &kp SV_AMPS               &kp LEFT     &kp DOWN    &kp UP            &kp RIGHT    &kp ENTER     &kp C_VOLUME_DOWN 
+                     &kp SV_BSLH &kp SV_AT  &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE               &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
+                                       &trans &trans &trans &trans                    &trans &trans &trans &trans
       >;
     };
-    ADJT_layer {
+    adjust {
       bindings = <
             &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7    &kp NUyMBER_8             &kp NUMBER_9 &kp KP_PLUS  &kp KP_DIVIDE  &kp SV_O_UMLAUT &kp KP_MINUS &trans 
             &mo BLT  &kp LBKT  &trans &trans &kp LSHFT &trans                                    &trans       &kp NUMBER_0 &kp NUMBER_1   &kp NUMBER_2    &kp NUMBER_3 &kp KP_PLUS
@@ -90,7 +86,7 @@
                   
       >;
     };
-    BLT_layer {
+    bluetooth {
   
       bindings = <
                 &kp TILDE &ext_power EXT_POWER_TOGGLE_CMD &trans &trans &trans &trans     &bt BT_CLR  &trans   &trans    &kp MINUS &kp EQUAL   &bt BT_CLR 

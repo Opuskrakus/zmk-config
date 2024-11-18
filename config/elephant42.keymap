@@ -51,7 +51,7 @@
         &lt SYM ESC   &kp Q &kp W &kp E     &kp R    &kp T                    &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
         &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                    &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
                       &kp Z &kp X &kp C     &kp V    &kp B                    &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
-                            &kp LSHFT   &kp LGUI  &kp NUM  &mt LALT ENTER     &kp SPACE &mo SYM  &kp BSPC  &kp LALT
+                            &kp LSHFT   &kp LGUI  &mo NUM  &mt LALT ENTER     &kp SPACE &mo SYM  &kp BSPC  &kp LALT
       >;
     };
 
@@ -72,8 +72,8 @@
    //                 | shi | low |  GUI| SPC |     | bks | ent | rai | lalt|
       bindings = <
         &kp C_PP    &kp EXCL    &kp SV_LT    &kp SV_LBKT  &kp SV_RBKT   &kp SV_GT               &kp RPAR     &kp PRCNT   &kp KP_MULTIPLY   &kp MINUS    &kp EQUAL  &kp C_VOLUME_UP 
-        &kp C_NEXT  &kp MINUS   &kp PLUS  &kp SV_LPAR &kp SV_RPAR  &kp SV_AMPS               &kp LEFT     &kp DOWN    &kp UP            &kp RIGHT    &kp ENTER     &kp C_VOLUME_DOWN 
-                     &kp SV_BSLH &kp SV_AT  &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE               &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
+        &kp C_NEXT  &kp SV_SQT  &kp SV_UNDER &kp SV_LPAR  &kp SV_RPAR  &kp SV_AMPS               &kp LEFT     &kp DOWN    &kp UP            &kp RIGHT    &kp ENTER     &kp C_VOLUME_DOWN 
+                    &kp SV_BSLH &kp SV_AT    &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE               &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
                                        &trans &trans &trans &trans                    &trans &trans &trans &trans
       >;
     };

@@ -63,7 +63,8 @@
       bindings = <
   &kp GRAVE &kp N1 &kp KP_PLUS &kp KP_MINUS &kp EQUAL &kp SV_CARET   &kp SV_PRCNT   &kp N7     &kp N8    &kp N9    &kp KP_MULTIPLY  &kp BSPC 
   &mo BLT  &kp LGUI &kp LALT  &kp LCTRL &kp  LSHFT &kp SV_HASH       &kp DOT        &kp N0    &kp N1    &kp N2    &kp N3    &kp ENTER 
-  S_UNDO    S_CUT     S_COPY     S_PASTE    S_REDO                   &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
+  &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT                  &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
+  //  S_UNDO    S_CUT     S_COPY     S_PASTE    S_REDO                   &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &KP_DIVIDE
                                  &trans &trans &trans &trans    &mt LSHFT SPACE &trans   &trans   &trans
 //&kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp LBKT  
 

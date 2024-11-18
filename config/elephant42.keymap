@@ -45,7 +45,7 @@
             // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | DEL |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  Ö  |  Ä  |
             //        |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  -  |
-            //              | SHFT| GUI | NUM | SPC |   | BKSP| ENT  | SYM| ALT |
+            //              | SHFT| GUI | NUM | SPC |   | BKSP| ENT  | SYM | ALT |
 
       bindings = <
         &lt SYM ESC   &kp Q &kp W &kp E     &kp R    &kp T                    &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
@@ -58,8 +58,8 @@
     numbers {
       bindings = <
         &kp GRAVE &kp N1 &kp KP_PLUS &kp KP_MINUS &kp EQUAL &kp SV_CARET   &kp SV_PRCNT  &kp N7    &kp N8    &kp N9    &kp KP_MULTIPLY  &kp BSPC 
-        &mo BLT  &kp LGUI    &kp LALT  &kp LCTRL &kp LSHFT  &kp SV_HASH    &kp N0        &kp N1    &kp N2    &kp N3     &kp DOT  &kp ENTER 
-                 &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp SV_DQT           &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &kp KP_DIVIDE
+        &mt LCTRL TAB  &kp LGUI    &kp LALT  &kp LCTRL &kp LSHFT  &kp SV_HASH    &kp N0        &kp N1    &kp N2    &kp N3     &kp DOT  &kp ENTER 
+                 &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp SV_DQT         &kp SV_DOLLAR &kp N4    &kp N5    &kp N6    &kp KP_DIVIDE
                                        &trans &trans &trans &trans         &kp SPACE     &trans   &trans   &trans
 
       >;
@@ -75,8 +75,8 @@
     adjust {
       bindings = <
             &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7   &kp NUMBER_8             &kp T &kp N  &kp KP_DIVIDE  &kp SV_O_UMLAUT &kp KP_MINUS &kp C_PP 
-            &mo BLT  &kp LBKT  &kp SV_A_UMLAUT &kp SV_O_UMLAUT &kp LSHFT &trans                 &kp TAB &kp NUMBER_3 &kp LALT     &kp LCTRL &kp LGUI        &kp C_NEXT
-                      &trans &trans &trans &trans &trans                                        &kp N      &kp NUMBER_4 &kp NUMBER_5   &kp NUMBER_6    &kp RETURN      
+            &mo BLT  &kp LBKT  &kp SV_A_UMLAUT &kp SV_O_UMLAUT &kp LSHFT &trans                &kp TAB &kp D &kp LALT     &kp LCTRL &kp LGUI        &kp C_NEXT
+                      &trans &trans &trans & &kp PRINTSCREEN                                   &kp N      &kp NUMBER_4 &kp NUMBER_5   &kp NUMBER_6    &kp RETURN      
                               &trans &trans &trans &trans                                       &trans       &trans       &trans         &trans 
                   
       >;

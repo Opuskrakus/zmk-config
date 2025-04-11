@@ -8,86 +8,295 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-
-// #include <dt-bindings/zmk/rgb.h>
-// #include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/ext_power.h>
-// #include <dt-bindings/zmk/mouse.h>
 
 #include "keys_sv.h"
 
-#define BASE 0
-#define NUM 1
-#define SYM 2
-#define ADJT 3
-#define BLT 4
+/* Layer definitions */
+#define BASE 0  // Default layer
+#define NAV  1  // Navigation and editing
+#define SYM  2  // Symbols
+#define NUM  3  // Numbers and function keys
+#define FUN  4  // Function keys and system controls
+#define ADJT 5  // Adjust layer (activated by SYM+NAV)
 
+/* Key position shorthand for combos */
+#define LT0 0  // Left-top row, leftmost key
+#define LT1 1
+#define LT2 2
+#define LT3 3
+#define LT4 4
+#define LT5 5
+#define RT0 6  // Right-top row, leftmost key
+#define RT1 7
+#define RT2 8
+#define RT3 9
+#define RT4 10
+#define RT5 11
 
+#define LM0 12  // Left-middle row, leftmost key
+#define LM1 13
+#define LM2 14
+#define LM3 15
+#define LM4 16
+#define LM5 17
+#define RM0 18  // Right-middle row, leftmost key
+#define RM1 19
+#define RM2 20
+#define RM3 21
+#define RM4 22
+#define RM5 23
 
-//Kolla upp mod type och repeating https://www.youtube.com/watch?v=NAUxTR4vGys
+#define LB0 24  // Left-bottom row, leftmost key
+#define LB1 25
+#define LB2 26
+#define LB3 27
+#define LB4 28
+#define RB0 29  // Right-bottom row, leftmost key
+#define RB1 30
+#define RB2 31
+#define RB3 32
+#define RB4 33
+
+#define LH0 34  // Left thumb keys
+#define LH1 35
+#define LH2 36
+#define LH3 37
+#define RH0 38  // Right thumb keys
+#define RH1 39
+#define RH2 40
+#define RH3 41
+
+/* Behavior customizations */
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <125>;
+};
+
+&mt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <125>;
+};
 
 / {
+    /* Combos - useful key combinations */
+    combos {
+        compatible = "zmk,combos";
+        
+        /* Programming symbol combos */
+        combo_equals {
+            timeout-ms = <50>;
+            key-positions = <LT3 LT4>;
+            bindings = <&kp SV_EQUAL>;
+        };
+        
+        combo_colon {
+            timeout-ms = <50>;
+            key-positions = <LM3 LM4>;
+            bindings = <&kp SV_COLON>;
+        };
+        
+        combo_semicolon {
+            timeout-ms = <50>;
+            key-positions = <LB2 LB3>;
+            bindings = <&kp SV_SEMI>;
+        };
+        
+        combo_slash {
+            timeout-ms = <50>;
+            key-positions = <RT3 RT4>;
+            bindings = <&kp SV_FSLH>;
+        };
+        
+        combo_backslash {
+            timeout-ms = <50>;
+            key-positions = <RM3 RM4>;
+            bindings = <&kp SV_BSLH>;
+        };
+        
+        combo_pipe {
+            timeout-ms = <50>;
+            key-positions = <RB2 RB3>;
+            bindings = <&kp SV_PIPE>;
+        };
+        
+        /* Bracket combos */
+        combo_round_brackets {
+            timeout-ms = <50>;
+            key-positions = <LM1 LM3>;
+            bindings = <&bracket_macro_paren>;
+        };
+        
+        combo_square_brackets {
+            timeout-ms = <50>;
+            key-positions = <LM1 LM2>;
+            bindings = <&bracket_macro_bracket>;
+        };
+        
+        combo_curly_brackets {
+            timeout-ms = <50>;
+            key-positions = <LM2 LM3>;
+            bindings = <&bracket_macro_brace>;
+        };
+        
+        /* Special character combos */
+        combo_a_umlaut {
+            timeout-ms = <50>;
+            key-positions = <LM1 RM1>;
+            bindings = <&kp SV_A_UMLAUT>;
+        };
+        
+        combo_o_umlaut {
+            timeout-ms = <50>;
+            key-positions = <LT4 RT1>;
+            bindings = <&kp SV_O_UMLAUT>;
+        };
+        
+        combo_a_ring {
+            timeout-ms = <50>;
+            key-positions = <LM1 RT0>;
+            bindings = <&kp SV_A_RING>;
+        };
+        
+        /* Convenient shortcuts */
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <LT0 LT1>;
+            bindings = <&kp ESC>;
+        };
+        
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <LM0 LM1>;
+            bindings = <&kp TAB>;
+        };
+        
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <RT4 RT5>;
+            bindings = <&kp DEL>;
+        };
+    };
+    
+    /* Macros - useful sequences */
+    macros {
+        /* Bracket macros that insert matching pair and place cursor in the middle */
+        bracket_macro_paren: bracket_macro_paren {
+            label = "BRACKET_MACRO_PAREN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LPAR &kp SV_RPAR &kp LEFT>;
+        };
+        
+        bracket_macro_bracket: bracket_macro_bracket {
+            label = "BRACKET_MACRO_BRACKET";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LBKT &kp SV_RBKT &kp LEFT>;
+        };
+        
+        bracket_macro_brace: bracket_macro_brace {
+            label = "BRACKET_MACRO_BRACE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LBRC &kp SV_RBRC &kp LEFT>;
+        };
+        
+        /* Arrow macros for programming */
+        arrow_right: arrow_right {
+            label = "ARROW_RIGHT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_MINUS &kp SV_GT>;
+        };
+        
+        arrow_left: arrow_left {
+            label = "ARROW_LEFT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LT &kp SV_MINUS>;
+        };
+        
+        arrow_fat: arrow_fat {
+            label = "ARROW_FAT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_EQUAL &kp SV_GT>;
+        };
+    };
 
-  // Activate ADJUST layer by pressing SYM and NUM
+    /* Conditional layers */
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        ADJT_layer {
-            if-layers = <NUM SYM>;
+        adjust_layer {
+            if-layers = <NAV SYM>;
             then-layer = <ADJT>;
         };
     };
 
-  keymap {
-    compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-    default_layer {
-// -----------------------------------------------------------------------------------------
-            // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | DEL |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  Ö  |  Ä  |
-            //        |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  -  |
-            //              | SHFT| GUI | NUM | SPC |   | BKSP| ENT  | SYM | ALT |
+        /* BASE layer - Colemak-DH with home row mods (GACS) */
+        default_layer {
+            bindings = <
+        &kp ESC         &kp Q       &kp W      &kp E       &kp R       &kp T                      &kp Y      &kp U       &kp I       &kp O      &kp P         &kp BSPC
+        &mt LCTRL TAB   &mt LGUI A  &mt LALT S &mt LCTRL D &mt LSHFT F &kp G                      &kp H      &mt RSHFT J &mt RCTRL K &mt RALT L &mt RGUI SV_O_UMLAUT &mt RALT SV_A_UMLAUT
+                        &kp Z       &kp X      &kp C       &kp V       &kp B                      &kp N      &kp M       &kp COMMA   &kp DOT    &kp SV_MINUS
+                                               &kp ESC     &lt NAV TAB &lt NUM SPACE &kp LSHFT    &kp SPACE  &lt SYM RET &lt FUN BSPC &kp RALT
+            >;
+        };
 
-      bindings = <
-        &lt SYM ESC   &kp Q &kp W &kp E     &kp R    &kp T                    &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC 
-        &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                    &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp ENTER
-                      &kp Z &kp X &kp C     &kp V    &kp B                    &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH
-                            &kp ENTER   &kp LGUI  &mo NUM  &kp LSHFT     &kp SPACE &mo SYM  &kp BSPC  &kp LALT
-      >;
-    };
-    numbers {
-      bindings = <
-        &kp GRAVE &kp SV_TILDE &kp KP_PLUS &kp FSLH &kp SV_EQUAL &kp SV_CARET   &kp KP_MULTIPLY  &kp N7    &kp N8    &kp N9    &kp SV_PRCNT  &kp BSPC 
-        &mt LCTRL TAB  &kp LGUI    &kp LALT  &kp LCTRL &kp LSHFT  &kp SV_HASH    &kp N0        &kp N1    &kp N2    &kp N3     &kp DOT  &kp ENTER 
-                 &kp SV_PIPE &kp SV_LT &kp SV_GT &trans &kp SV_DQT         &kp KP_DIVIDE  &kp N4    &kp N5    &kp N6    &kp SV_DOLLAR
-                                       &trans &trans &trans &trans         &kp SPACE     &trans   &trans   &trans
+        /* NAV layer - Navigation and editing controls */
+        nav_layer {
+            bindings = <
+        &trans      &kp HOME    &kp UP     &kp END     &kp PG_UP   &none                       &kp HOME   &kp PG_DN    &kp PG_UP   &kp END    &kp INS     &kp DEL
+        &trans      &kp LEFT    &kp DOWN   &kp RIGHT   &kp PG_DN   &none                       &kp LEFT   &kp DOWN     &kp UP      &kp RIGHT  &kp RET     &trans
+                    &kp LC(Z)   &kp LC(X)  &kp LC(C)   &kp LC(V)   &kp LC(Y)                   &kp ESC    &kp TAB      &kp DEL     &kp BSPC   &kp TILDE
+                                           &trans      &trans      &trans      &trans          &kp SPACE  &kp RET      &kp BSPC    &trans
+            >;
+        };
 
-      >;
+        /* SYM layer - Programming symbols for easy access */
+        symbols_layer {
+            bindings = <
+        &trans      &kp SV_EXCL &kp SV_AT   &kp SV_HASH  &kp SV_DOLLAR &kp SV_PRCNT           &kp SV_CARET &kp SV_AMPS  &kp SV_ASTRK &kp SV_LPAR &kp SV_RPAR &trans
+        &trans      &kp SV_BSLH &kp SV_PIPE &kp SV_EQUAL &kp SV_PLUS   &kp SV_MINUS           &kp SV_UNDER &kp SV_LBRC  &kp SV_RBRC  &kp SV_LBKT &kp SV_RBKT &trans
+                    &arrow_left &arrow_right &arrow_fat  &kp SV_COLON  &kp SV_SEMI            &kp SV_DQT   &kp SV_SQT   &kp SV_LT    &kp SV_GT   &kp SV_QMARK
+                                            &trans       &trans        &trans     &trans      &trans       &trans       &trans       &trans
+            >;
+        };
+
+        /* NUM layer - Numbers and arithmetic */
+        num_layer {
+            bindings = <
+        &trans      &kp N1      &kp N2     &kp N3      &kp N4      &kp N5                     &kp N6      &kp N7      &kp N8      &kp N9     &kp N0      &trans
+        &trans      &kp LGUI    &kp LALT   &kp LCTRL   &kp LSHFT   &none                      &kp KP_PLUS &kp N4      &kp N5      &kp N6     &kp KP_MULTIPLY &trans
+                    &none       &none      &none       &none       &none                      &kp KP_MINUS &kp N1     &kp N2      &kp N3     &kp KP_DIVIDE
+                                           &trans      &trans      &trans      &trans        &kp SPACE   &kp N0      &kp DOT     &trans
+            >;
+        };
+
+        /* FUN layer - Function keys and system controls */
+        func_layer {
+            bindings = <
+        &kp F1      &kp F2      &kp F3     &kp F4      &kp F5      &kp F6                     &kp F7      &kp F8      &kp F9      &kp F10    &kp F11     &kp F12
+        &trans      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4         &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &kp C_PP  &kp C_NEXT  &trans
+                    &bt BT_CLR  &out OUT_TOG &none    &none       &ext_power EP_TOG          &kp CAPS    &kp SLCK    &kp PSCRN   &kp C_PREV &kp PAUSE_BREAK
+                                            &trans     &trans      &trans      &trans         &trans      &trans      &trans      &trans
+            >;
+        };
+
+        /* ADJUST layer - Only accessible by holding SYM+NAV */
+        adjust_layer {
+            bindings = <
+        &sys_reset  &bootloader &none       &none       &none      &none                     &none       &none       &none       &none       &bootloader &sys_reset
+        &none       &bt BT_CLR  &bt BT_PRV  &bt BT_NXT  &out OUT_TOG &none                   &none       &none       &none       &none       &none       &none
+                    &none       &none       &none       &none       &ext_power EP_TOG        &none       &none       &none       &none       &none
+                                            &trans      &trans      &trans      &trans       &trans      &trans      &trans      &trans
+            >;
+        };
     };
-    symbols {
-      bindings = <
-      // kp equal here not in use and tilde2 is already in use in num layer as multiply
-        &lt SYM ESC    &kp EXCL    &kp SV_LT    &kp SV_LBKT  &kp SV_RBKT   &kp SV_GT               &kp HOME    &kp PG_DN  &kp PG_UP  &kp END   &kp EQUAL  &kp C_VOLUME_UP 
-        &mt LCTRL TAB  &kp SV_SQT  &kp SV_UNDER &kp SV_LPAR  &kp SV_RPAR  &kp SV_AMPS              &kp LEFT    &kp DOWN   &kp UP     &kp RIGHT &kp ENTER  &kp C_VOLUME_DOWN 
-                    &kp SV_BSLH &kp SV_AT    &kp SV_LBRC  &kp SV_RBRC  &kp SV_PIPE              &kp ESC     &kp BSPC   &kp DEL    &kp TAB   &kp TILDE2
-                                       &trans &trans &trans &trans                    &trans &trans &trans &trans
-      >;
-    };
-    adjust {
-      bindings = <
-            &trans     &trans  &trans &kp SV_A_UMLAUT  &kp NUMBER_7   &kp NUMBER_8             &kp T &kp N  &kp KP_DIVIDE  &kp SV_O_UMLAUT &kp KP_MINUS &kp C_PP 
-            &mo BLT  &kp LBKT  &kp SV_A_UMLAUT &kp SV_O_UMLAUT &kp LSHFT &trans                &kp TAB &kp D &kp LALT     &kp LCTRL &kp LGUI        &kp C_NEXT
-                      &kp SV_UMLAUT &kp SV_EURO &kp SV_ACUTE &kp SV_GRAVE  &kp PRINTSCREEN                       &kp N      &kp NUMBER_4 &kp NUMBER_5   &kp NUMBER_6    &kp RETURN      
-                              &trans &trans &trans &trans                                       &trans       &trans       &trans         &trans 
-                  
-      >;
-    };
-    bluetooth {
-      bindings = <
-                &trans &ext_power EXT_POWER_TOGGLE_CMD &trans &trans &trans &trans     &bt BT_CLR  &trans   &trans    &kp MINUS &kp EQUAL   &bt BT_CLR 
-                &trans &trans &trans &trans &trans &bt BT_PRV                          &bt BT_NXT   &bt BT_SEL 0  &bt BT_SEL 1    &trans    &trans      &bt BT_NXT
-                          &trans &trans &trans &trans &kp LBKT                            &kp RBKT &trans   &kp C_PREV  &kp C_NEXT &ext_power EXT_POWER_TOGGLE_CMD 
-                                              &trans &trans &trans &trans        &trans  &trans   &trans &trans
-      >;
-    };
-  };
-};        
+}; 

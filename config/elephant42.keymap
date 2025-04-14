@@ -106,13 +106,13 @@
         
         combo_slash {
             timeout-ms = <50>;
-            key-positions = <RT3 RT4>;
+            key-positions = <RT2 RT3>;
             bindings = <&kp SV_FSLH>;
         };
         
         combo_backslash {
             timeout-ms = <50>;
-            key-positions = <RM3 RM4>;
+            key-positions = <RM2 RM3>;
             bindings = <&kp SV_BSLH>;
         };
         
@@ -121,23 +121,23 @@
             key-positions = <RB2 RB3>;
             bindings = <&kp SV_PIPE>;
         };
-        
+          
         /* Bracket combos */
         combo_round_brackets {
             timeout-ms = <50>;
-            key-positions = <LM1 RM1>;
+            key-positions = <LT5 RT0>;
             bindings = <&bracket_macro_paren>;
         };
         
         combo_square_brackets {
             timeout-ms = <50>;
-            key-positions = <LT1 RT1>;
+            key-positions = <LM5 RM0>;
             bindings = <&bracket_macro_bracket>;
         };
         
         combo_curly_brackets {
             timeout-ms = <50>;
-            key-positions = <LM2 RM4>;
+            key-positions = <LB4 RB0>;
             bindings = <&bracket_macro_brace>;
         };
         
@@ -161,16 +161,17 @@
         };
         
         /* Convenient shortcuts */
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <LT0 RT0>;
-            bindings = <&kp ESC>;
-        };
         
         combo_del {
             timeout-ms = <50>;
             key-positions = <RT4 RT5>;
             bindings = <&kp DEL>;
+        };
+
+        combo_comment {
+            timeout-ms = <50>;
+            key-positions = <LT2 RT2>;
+            bindings = <&kp LC(LS(N7))>;
         };
     };
     

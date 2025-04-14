@@ -82,7 +82,7 @@ CTLTB GA  AS  CD  SF  G     H   SJ  CK  AL  GO  AÄ
 
 ```
  ---   1    2    3    4    5      6    7    8    9    0   ---
- ---  GUI  ALT CTRL SHFT ---      +    4    5    6    *   ---
+ ---  GUI  ALT CTRL SHFT TAB      +    4    5    6    *   ---
       ---  ---  ---  ---  ---     -    1    2    3    /   
            ---  ---  ---  ---    SPC   0    .   ---
 ```

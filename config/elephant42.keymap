@@ -94,13 +94,13 @@
         
         combo_colon {
             timeout-ms = <50>;
-            key-positions = <LM3 LM4>;
+            key-positions = <LM3 RM3>;
             bindings = <&kp SV_COLON>;
         };
         
         combo_semicolon {
             timeout-ms = <50>;
-            key-positions = <LB2 LB3>;
+            key-positions = <LM2 RM2>;
             bindings = <&kp SV_SEMI>;
         };
         
@@ -125,19 +125,19 @@
         /* Bracket combos */
         combo_round_brackets {
             timeout-ms = <50>;
-            key-positions = <LM1 LM3>;
+            key-positions = <LM1 RM1>;
             bindings = <&bracket_macro_paren>;
         };
         
         combo_square_brackets {
             timeout-ms = <50>;
-            key-positions = <LM1 LM2>;
+            key-positions = <LT1 RT1>;
             bindings = <&bracket_macro_bracket>;
         };
         
         combo_curly_brackets {
             timeout-ms = <50>;
-            key-positions = <LM2 LM3>;
+            key-positions = <LM2 RM4>;
             bindings = <&bracket_macro_brace>;
         };
         
@@ -150,7 +150,7 @@
         
         combo_o_umlaut {
             timeout-ms = <50>;
-            key-positions = <LT4 RT1>;
+            key-positions = <LT1 RT1>;
             bindings = <&kp SV_O_UMLAUT>;
         };
         
@@ -163,14 +163,8 @@
         /* Convenient shortcuts */
         combo_esc {
             timeout-ms = <50>;
-            key-positions = <LT0 LT1>;
+            key-positions = <LT0 RT0>;
             bindings = <&kp ESC>;
-        };
-        
-        combo_tab {
-            timeout-ms = <50>;
-            key-positions = <LM0 LM1>;
-            bindings = <&kp TAB>;
         };
         
         combo_del {
@@ -252,10 +246,10 @@
         /* NAV layer - Navigation and editing controls */
         nav_layer {
             bindings = <
-        &trans      &kp HOME    &kp UP     &kp END     &kp PG_UP   &none                       &kp HOME   &kp PG_DN    &kp PG_UP   &kp END    &kp INS     &kp DEL
-        &trans      &kp LEFT    &kp DOWN   &kp RIGHT   &kp PG_DN   &none                       &kp LEFT   &kp DOWN     &kp UP      &kp RIGHT  &kp RET     &trans
-                    &kp LC(Z)   &kp LC(X)  &kp LC(C)   &kp LC(V)   &kp LC(Y)                   &kp ESC    &kp TAB      &kp DEL     &kp BSPC   &kp TILDE
-                                           &trans      &trans      &trans      &trans          &kp SPACE  &kp RET      &kp BSPC    &trans
+        &trans      &kp PG_UP    &kp LC(LS(C)) &kp UP      &kp LC(LS(TAB))  &kp LC(TAB)            &kp HOME      &kp PG_DN     &kp PG_UP     &kp END         &kp LA(D)   &kp DEL
+        &trans      &kp PG_DN    &kp LEFT      &kp DOWN    &kp RIGHT        &kp LA(TAB)            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT       &kp RET     &trans
+                    &kp LC(Z)    &kp LC(X)     &kp LC(C)   &kp LC(V)        &kp LC(Y)              &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
+                                 &trans      &trans        &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
             >;
         };
 

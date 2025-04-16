@@ -21,7 +21,7 @@ The Elephant42 has 42 keys with the following physical layout:
  ESC  Q   W   E   R   T     Y   U   I   O   P   BSPC
 CTLTB GA  AS  CD  SF  G     H   SJ  CK  AL  GO  AÄ
       Z   X   C   V   B     N   M   ,   .   -   
-          ESC NAV SPC SFT   SPC SYM BSP ALT
+          ESC NUM NAV SFT   SPC SYM FUN ALT
 ```
 
 - GA = GUI+A (hold for GUI, tap for A)
@@ -33,9 +33,9 @@ CTLTB GA  AS  CD  SF  G     H   SJ  CK  AL  GO  AÄ
 - AL = ALT+L (hold for ALT, tap for L)
 - GO = GUI+Ö (hold for GUI, tap for Ö)
 - AÄ = ALT+Ä (hold for ALT, tap for Ä)
-- NAV = Hold for NAV layer, tap for TAB
+- NAV = Hold for NAV layer, tap for SPACE
 - SYM = Hold for SYM layer, tap for RETURN
-- NUM = Hold for NUM layer, tap for SPACE
+- NUM = Hold for NUM layer, tap for TAB
 - FUN = Hold for FUN layer, tap for BACKSPACE
 
 ### NAV Layer (1) - Navigation and Editing
@@ -131,16 +131,16 @@ RESET BOOT ---  ---  ---  ---    ---  ---  ---  ---  BOOT RESET
 ## Combo Key Mappings
 
 ### Brackets (Adjacent Split Combos)
-- T+Y keys (LT5+RT0) → () with cursor in between
-- G+H keys (LM5+RM0) → [] with cursor in between
+- T+Y keys (LT5+RT0) → [] with cursor in between
+- G+H keys (LM5+RM0) → () with cursor in between
 - B+N keys (LB4+RB0) → {} with cursor in between
 
 ### Programming Symbols
 - E+R keys (LT3+LT4) → = (same-hand adjacent combo)
 - D+L keys (LM3+RM3) → : (cross-hand combo)
 - S+K keys (LM2+RM2) → ; (cross-hand combo)
-- I+O keys (RT2+RT3) → / (same-hand adjacent combo)
-- K+L keys (RM2+RM3) → \ (same-hand adjacent combo)
+- I+O keys (RT2+RT3) → \ (same-hand adjacent combo)
+- K+L keys (RM2+RM3) → / (same-hand adjacent combo)
 - ./. keys (RB3+RB4) → | (same-hand adjacent combo)
 
 ### Swedish Characters (Cross-hand Combos)
@@ -148,7 +148,8 @@ RESET BOOT ---  ---  ---  ---    ---  ---  ---  ---  BOOT RESET
 - Q+U keys (LT1+RT1) → ö
 - A+Y keys (LM1+RT0) → å
 
-### Shortcuts (Cross-hand Combos)
+### Shortcuts
 - ESC+Y (LT0+RT0) → ESC
 - P+BSPC (RT4+RT5) → DEL
 - W+I (LT2+RT2) → Ctrl+Shift+7 (Comment in VSCode)
+- R+T (LT4+LT5) → RET

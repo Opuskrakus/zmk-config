@@ -174,7 +174,7 @@
             bindings = <&kp LC(LS(N7))>;
         };
         
-        combo_comment {
+        combo_return {
             timeout-ms = <50>;
             key-positions = <LT4 LT5>;
             bindings = <&kp RET>;

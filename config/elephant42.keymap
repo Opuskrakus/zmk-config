@@ -4,6 +4,10 @@
  * SPDX-License-Identifier: MIT
  */
  
+/*
+ * Elephant42 - Visual Keymap Layout (Swedish Developer Layout)
+ * ============================================================
+ */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -248,6 +252,35 @@
                         &kp Z       &kp X      &kp C       &kp V       &kp B                      &kp N      &kp M       &kp COMMA   &kp DOT    &kp SV_MINUS
                                                &kp ESC     &lt NUM TAB &lt NAV SPACE &kp LSHFT    &kp SPACE  &lt SYM RET &lt FUN BSPC &kp LALT
             >;
+            
+            /*
+             * BASE Layer (0) - Default typing layer with home row mods
+             * --------------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ ESC │  Q  │  W  │  E  │  R  │  T  │                   │  Y  │  U  │  I  │  O  │  P  │ BSPC│
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │CTLTB│  GA │  AS │  CD │  SF │  G  │                   │  H  │  SJ │  CK │  AL │  GO │  AÄ │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │  Z  │  X  │  C  │  V  │  B  │                   │  N  │  M  │  ,  │  .  │  -  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+             *                   │ ESC │ NUM │ NAV │SHIFT│       │SPACE│ SYM │ FUN │ ALT │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * CTLTB = Hold for CTRL, tap for TAB
+             * GA = Hold for GUI, tap for A
+             * AS = Hold for ALT, tap for S
+             * CD = Hold for CTRL, tap for D
+             * SF = Hold for SHIFT, tap for F
+             * SJ = Hold for SHIFT, tap for J
+             * CK = Hold for CTRL, tap for K
+             * AL = Hold for ALT, tap for L
+             * GO = Hold for GUI, tap for Ö
+             * AÄ = Hold for ALT, tap for Ä
+             * NUM = Hold for NUM layer, tap for TAB
+             * NAV = Hold for NAV layer, tap for SPACE
+             * SYM = Hold for SYM layer, tap for RETURN
+             * FUN = Hold for FUN layer, tap for BACKSPACE
+             */
         };
 
         /* NAV layer - Navigation and editing controls */
@@ -258,6 +291,36 @@
                     &kp LC(Z)    &kp LC(X)     &kp LC(C)   &kp LC(V)        &kp LC(Y)              &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
                                  &trans      &trans        &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
             >;
+            
+            /*
+             * NAV Layer (1) - Navigation and editing
+             * --------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │PGUP │C-S-C│  UP │C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │PGDN │LEFT │DOWN │RIGHT│A-TAB│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ C-Z │ C-X │ C-C │ C-V │ C-Y │                   │C-S-C│C-S-V│C-S-T│A-S-T│C-TAB│     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │SPACE│ RET │ BSP │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * PGUP = Page Up
+             * PGDN = Page Down
+             * C-S-C = Ctrl+Shift+C (Copy in terminal)
+             * C-S-T = Ctrl+Shift+Tab (Previous tab)
+             * C-TAB = Ctrl+Tab (Next tab)
+             * A-D = Alt+D (Address bar in browsers)
+             * A-TAB = Alt+Tab (Switch applications)
+             * C-Z = Ctrl+Z (Undo)
+             * C-X = Ctrl+X (Cut)
+             * C-C = Ctrl+C (Copy)
+             * C-V = Ctrl+V (Paste)
+             * C-Y = Ctrl+Y (Redo)
+             * C-S-V = Ctrl+Shift+V (Paste in terminal)
+             * C-S-T = Ctrl+Shift+T (New tab)
+             * A-S-T = Alt+Shift+Tab (Previous application)
+             */
         };
 
         /* SYM layer - Programming symbols for easy access */
@@ -268,6 +331,26 @@
                     &arrow_left &arrow_right &arrow_fat  &kp SV_COLON  &kp SV_SEMI            &kp SV_DQT   &kp SV_SQT   &kp SV_LT    &kp SV_GT   &kp SV_QMARK
                                             &trans       &trans        &trans     &trans      &trans       &trans       &trans       &trans
             >;
+            
+            /*
+             * SYM Layer (2) - Symbols for programming
+             * ---------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  &  │  *  │  (  │  )  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │  \  │  |  │  =  │  +  │  -  │                   │  _  │  {  │  }  │  [  │  ]  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  ?  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             * 
+             * <- = Left arrow macro (types "<-")
+             * -> = Right arrow macro (types "->")
+             * => = Fat arrow macro (types "=>")
+             * All other symbols on this layer are direct symbol mappings for programming:
+             * !, @, #, $, %, ^, &, *, (, ), \, |, =, +, -, _, {, }, [, ], :, ;, ", ', <, >, ?
+             */
         };
 
         /* NUM layer - Numbers and arithmetic */
@@ -278,6 +361,27 @@
                     &none       &none      &none       &none       &none                      &kp KP_MINUS &kp N1     &kp N2      &kp N3     &kp KP_DIVIDE
                                            &trans      &trans      &trans      &trans        &kp SPACE   &kp N0      &kp DOT     &trans
             >;
+            
+            /*
+             * NUM Layer (3) - Numbers and numeric keypad
+             * -----------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │  1  │  2  │  3  │  4  │  5  │                   │  6  │  7  │  8  │  9  │  0  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │ GUI │ ALT │CTRL │SHIFT│ TAB │                   │  +  │  4  │  5  │  6  │  *  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ --- │ --- │ --- │ --- │ --- │                   │  -  │  1  │  2  │  3  │  /  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │SPACE│  0  │  .  │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * The top row provides number keys 1-0 in sequence
+             * The right side is arranged as a numeric keypad with:
+             * - Mathematical operators: + (plus), * (multiply), - (minus), / (divide)
+             * - Number keys arranged in a calculator/numpad style pattern
+             * - Decimal point (.)
+             * - The left side middle row provides all modifiers: GUI, ALT, CTRL, SHIFT for easy chording
+             */
         };
 
         /* FUN layer - Function keys and system controls */
@@ -288,6 +392,36 @@
                     &bt BT_CLR  &out OUT_TOG &none    &none       &ext_power EP_TOG          &kp CAPS    &kp SLCK    &kp PSCRN   &kp C_PREV &kp PAUSE_BREAK
                                             &trans     &trans      &trans      &trans         &trans      &trans      &trans      &trans
             >;
+            
+            /*
+             * FUN Layer (4) - Function keys and system controls
+             * ------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ F1  │ F2  │ F3  │ F4  │ F5  │ F6  │                   │ F7  │ F8  │ F9  │ F10 │ F11 │ F12 │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │ BT1 │ BT2 │ BT3 │ BT4 │ BT5 │                   │MUTE │VOL- │VOL+ │PLAY │NEXT │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │BTCLR│OUTG │ --- │ --- │ PWR │                   │CAPS │SLCK │PSCR │PREV │PAUS │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * F1-F12 = Function keys
+             * BT1-BT5 = Bluetooth profile selection (1-5)
+             * BTCLR = Clear Bluetooth bonds
+             * OUTG = Toggle output (USB/Bluetooth)
+             * PWR = Toggle external power
+             * MUTE = Volume mute
+             * VOL- = Volume down
+             * VOL+ = Volume up
+             * PLAY = Play/pause media
+             * NEXT = Next track
+             * CAPS = Caps lock
+             * SLCK = Scroll lock
+             * PSCR = Print screen
+             * PREV = Previous track
+             * PAUS = Pause break
+             */
         };
 
         /* ADJUST layer - Only accessible by holding SYM+NAV */
@@ -298,6 +432,30 @@
                     &none       &none       &none       &none       &ext_power EP_TOG        &none       &none       &none       &none       &none
                                             &trans      &trans      &trans      &trans       &trans      &trans      &trans      &trans
             >;
+            
+            /*
+             * ADJUST Layer (5) - System functions (activated by NAV+SYM)
+             * ----------------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │RESET│BOOT │ --- │ --- │ --- │ --- │                   │ --- │ --- │ --- │ --- │BOOT │RESET│
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │BTCLR│BTPRV│BTNXT│OUTG │ --- │                   │ --- │ --- │ --- │ --- │ --- │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ --- │ --- │ --- │ --- │ PWR │                   │ --- │ --- │ --- │ --- │ --- │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * RESET = System reset
+             * BOOT = Bootloader mode (for flashing keyboard firmware)
+             * BTCLR = Clear all Bluetooth bonds
+             * BTPRV = Select previous Bluetooth profile
+             * BTNXT = Select next Bluetooth profile
+             * OUTG = Toggle output mode (USB/Bluetooth)
+             * PWR = Toggle external power
+             * 
+             * This layer is only accessible when holding both NAV and SYM layer keys simultaneously
+             */
         };
     };
 }; 

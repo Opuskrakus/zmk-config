@@ -37,13 +37,11 @@
  * SYM Layer (2)
  * -------------
  * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
- * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  &  │  *  │  (  │  )  │ --- │
+ * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  ~  │  *  │  (  │  )  │ --- │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
- * │ --- │  \  │  |  │  =  │  +  │  -  │                   │  _  │  {  │  }  │  [  │  ]  │ --- │
+ * │ --- │  &  │  |  │  =  │  +  │  -  │                   │  ?  │  {  │  }  │  [  │  ]  │ --- │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
- *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  ?  │     
- *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
- *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+ *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     Gör något vettigare med denna
  *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
  * 
  * NUM Layer (3)
@@ -412,9 +410,9 @@
         /* SYM layer - Programming symbols for easy access */
         symbols_layer {
             bindings = <
-        &trans      &kp SV_EXCL &kp SV_AT   &kp SV_HASH  &kp SV_DOLLAR &kp SV_PRCNT           &kp SV_CARET &kp SV_AMPS  &kp SV_ASTRK &kp SV_LPAR &kp SV_RPAR &trans
-        &trans      &kp SV_BSLH &kp SV_PIPE &kp SV_EQUAL &kp SV_PLUS   &kp SV_MINUS           &kp SV_UNDER &kp SV_LBRC  &kp SV_RBRC  &kp SV_LBKT &kp SV_RBKT &trans
-                    &arrow_left &arrow_right &arrow_fat  &kp SV_COLON  &kp SV_SEMI            &kp SV_DQT   &kp SV_SQT   &kp SV_LT    &kp SV_GT   &kp SV_QMARK
+        &trans      &kp SV_EXCL &kp SV_AT   &kp SV_HASH  &kp SV_DOLLAR &kp SV_PRCNT           &kp SV_CARET &kp SV_TILDE  &kp SV_ASTRK &kp SV_LPAR &kp SV_RPAR &trans
+        &trans      &kp SV_AMPS &kp SV_PIPE &kp SV_EQUAL &kp SV_PLUS   &kp SV_MINUS           &kp SV_QMARK &kp SV_LBRC  &kp SV_RBRC  &kp SV_LBKT &kp SV_RBKT &trans
+                    &arrow_left &arrow_right &arrow_fat  &kp SV_COLON  &kp SV_SEMI            &kp SV_DQT   &kp SV_SQT   &kp SV_LT    &kp SV_GT   &kp SV_UNDER
                                             &trans       &trans        &trans     &trans      &trans       &trans       &trans       &trans
             >;
             
@@ -422,11 +420,11 @@
              * SYM Layer (2) - Symbols for programming
              * ---------------------------------------
              * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
-             * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  &  │  *  │  (  │  )  │ --- │
+             * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  ~  │  *  │  (  │  )  │ --- │
              * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
-             * │ --- │  \  │  |  │  =  │  +  │  -  │                   │  _  │  {  │  }  │  [  │  ]  │ --- │
+             * │ --- │  &  │  |  │  =  │  +  │  -  │                   │  ?  │  {  │  }  │  [  │  ]  │ --- │
              * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
-             *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  ?  │     
+             *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     
              *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
              *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
              *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
@@ -435,7 +433,7 @@
              * -> = Right arrow macro (types "->")
              * => = Fat arrow macro (types "=>")
              * All other symbols on this layer are direct symbol mappings for programming:
-             * !, @, #, $, %, ^, &, *, (, ), \, |, =, +, -, _, {, }, [, ], :, ;, ", ', <, >, ?
+             * !, @, #, $, %, ^, ~, *, (, ), &, |, =, +, -, ?, {, }, [, ], :, ;, ", ', <, >, _
              */
         };
 

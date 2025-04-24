@@ -25,9 +25,9 @@
  * NAV Layer (1)
  * -------------
  * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
- * │ --- │PGUP │C-S-C│  UP │C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
+ * │ --- │PGUP │C-S-C│C-S-V│C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
- * │ --- │PGDN │LEFT │DOWN │RIGHT│A-TAB│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
+ * │ --- │WIN+1│WIN+2│WIN+3│WIN+4│WIN+5│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
  *       │ C-Z │ C-X │ C-C │ C-V │ C-Y │                   │C-S-C│C-S-V│C-S-T│A-S-T│C-TAB│     
  *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
@@ -41,7 +41,9 @@
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
  * │ --- │  &  │  |  │  =  │  +  │  -  │                   │  ?  │  {  │  }  │  [  │  ]  │ --- │
  * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
- *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     Gör något vettigare med denna
+ *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
  *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
  * 
  * NUM Layer (3)
@@ -175,75 +177,75 @@
         
         /* Programming symbol combos */
         combo_equals {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LT3 LT4>;
             bindings = <&kp SV_EQUAL>;
         };
         
         combo_colon {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LM3 RM3>;
             bindings = <&kp SV_COLON>;
         };
         
         combo_semicolon {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LM2 RM2>;
             bindings = <&kp SV_SEMI>;
         };
         
         combo_slash {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <RT2 RT3>;
             bindings = <&kp SV_BSLH>;
         };
         
         combo_backslash {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <RM2 RM3>;
             bindings = <&kp SV_FSLH>;
         };
         
         combo_pipe {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <RB2 RB3>;
             bindings = <&kp SV_PIPE>;
         };
           
         /* Bracket combos */
         combo_square_brackets {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LT5 RT0>;
             bindings = <&bracket_macro_bracket>;
         };
         
         combo_round_brackets {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LM5 RM0>;
             bindings = <&bracket_macro_paren>;
         };
         
         combo_curly_brackets {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LB4 RB0>;
             bindings = <&bracket_macro_brace>;
         };
         
         /* Special character combos */
         combo_a_umlaut {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LM1 RM1>;
             bindings = <&kp SV_A_UMLAUT>;
         };
         
         combo_o_umlaut {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LT1 RT1>;
             bindings = <&kp SV_O_UMLAUT>;
         };
         
         combo_a_ring {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LM1 RT0>;
             bindings = <&kp SV_A_RING>;
         };
@@ -251,19 +253,19 @@
         /* Convenient shortcuts */
 
         combo_del {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <RT4 RT5>;
             bindings = <&kp DEL>;
         };
 
         combo_comment {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LT2 RT2>;
             bindings = <&kp LC(LS(N7))>;
         };
         
         combo_return {
-            timeout-ms = <50>;
+            timeout-ms = <150>;
             key-positions = <LT4 LT5>;
             bindings = <&kp RET>;
         };
@@ -370,19 +372,19 @@
         /* NAV layer - Navigation and editing controls */
         nav_layer {
             bindings = <
-        &trans      &kp PG_UP    &kp LC(LS(C)) &kp UP      &kp LC(LS(TAB))  &kp LC(TAB)            &kp HOME      &kp PG_DN     &kp PG_UP     &kp END         &kp LA(D)   &kp DEL
-        &trans      &kp PG_DN    &kp LEFT      &kp DOWN    &kp RIGHT        &kp LA(TAB)            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT       &kp RET     &trans
-                    &kp LC(Z)    &kp LC(X)     &kp LC(C)   &kp LC(V)        &kp LC(Y)              &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
-                                 &trans      &trans        &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
+        &trans      &kp PG_UP    &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(TAB))  &kp LC(TAB)            &kp HOME      &kp PG_DN     &kp PG_UP     &kp END         &kp LA(D)   &kp DEL
+        &trans      &kp LG(N1)   &kp LG(N2)    &kp LG(N3)    &kp LG(N4)       &kp LG(N5)             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT       &kp RET     &trans
+                    &kp LC(Z)    &kp LC(X)     &kp LC(C)     &kp LC(V)        &kp LC(Y)              &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
+                                 &trans      &trans          &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
             >;
             
             /*
              * NAV Layer (1) - Navigation and editing
              * --------------------------------------
              * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
-             * │ --- │PGUP │C-S-C│  UP │C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
+             * │ --- │PGUP │C-S-C│C-S-V│C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
              * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
-             * │ --- │PGDN │LEFT │DOWN │RIGHT│A-TAB│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
+             * │ --- │WIN+1│WIN+2│WIN+3│WIN+4│WIN+5│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
              * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
              *       │ C-Z │ C-X │ C-C │ C-V │ C-Y │                   │C-S-C│C-S-V│C-S-T│A-S-T│C-TAB│     
              *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
@@ -392,10 +394,11 @@
              * PGUP = Page Up
              * PGDN = Page Down
              * C-S-C = Ctrl+Shift+C (Copy in terminal)
+             * C-S-C = Ctrl+Shift+V (Paste in terminal)
              * C-S-T = Ctrl+Shift+Tab (Previous tab)
              * C-TAB = Ctrl+Tab (Next tab)
+             * WIN+1-5 = Windows/GUI+1-5 (For i3wm workspace switching)
              * A-D = Alt+D (Address bar in browsers)
-             * A-TAB = Alt+Tab (Switch applications)
              * C-Z = Ctrl+Z (Undo)
              * C-X = Ctrl+X (Cut)
              * C-C = Ctrl+C (Copy)

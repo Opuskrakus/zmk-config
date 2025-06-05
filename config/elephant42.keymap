@@ -340,7 +340,7 @@
         &kp ESC         &kp Q       &kp W      &kp E       &kp R       &kp T                      &kp Y      &kp U       &kp I       &kp O      &kp P         &kp BSPC
         &mt LCTRL TAB   &mt LGUI A  &mt LALT S &mt LCTRL D &mt LSHFT F &kp G                      &kp H      &mt RSHFT J &mt RCTRL K &mt LALT L &mt RGUI SV_O_UMLAUT &mt RALT SV_A_UMLAUT
                         &kp Z       &kp X      &kp C       &kp V       &kp B                      &kp N      &kp M       &kp COMMA   &kp DOT    &kp SV_MINUS
-                                               &kp ESC     &lt NUM TAB &lt NAV SPACE &kp LSHFT    &kp SPACE  &lt SYM RET &lt FUN BSPC &kp LALT
+                                    &kp ESC     &kp LSHFT&lt NAV SPACE  &lt NUM TAB               &kp SPACE  &lt SYM RET &lt FUN BSPC &kp LALT
             >;
             
             /*
@@ -378,7 +378,7 @@
             bindings = <
         &trans      &kp PG_UP    &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(TAB))  &kp LC(TAB)            &kp HOME      &kp END     &kp PG_UP     &kp PG_DN         &kp LA(D)   &kp DEL
         &trans      &kp LG(N1)   &kp LG(N2)    &kp LG(N3)    &kp LG(N4)       &kp LG(N5)             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT       &kp RET     &trans
-                    &kp LC(Z)    &kp LC(X)     &kp LC(C)     &kp LC(V)        &kp LC(Y)              &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
+                    &kp LC(Z)    &kp LC(X)     &kp LC(C)     &kp LC(V)        &kp LG(N6)             &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
                                  &trans      &trans          &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
             >;
             

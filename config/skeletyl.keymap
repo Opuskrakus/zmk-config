@@ -1,215 +1,552 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+ 
+/*
+ * Elephant42 - Visual Keymap Layout (Swedish Developer Layout)
+ * ============================================================
+ *
+ * Elephant42 - A split 42-key keyboard (21 keys per half)
+ *
+ * Combo Configuration:
+ * - All combos have 20ms timeout to prevent accidental activation during fast typing
+ * - Return key combo uses V+B keys (LB3 LB4) for ergonomic accessibility
+ *
+ * BASE Layer (0)
+ * --------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │ ESC │  Q  │  W  │  E  │  R  │  T  │                   │  Y  │  U  │  I  │  O  │  P  │ BSPC│
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │CTLTB│  GA │  AS │  CD │  SF │  G  │                   │  H  │  SJ │  CK │  AL │  GO │  AÄ │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │  Z  │  X  │  C  │  V  │  B  │                   │  N  │  M  │  ,  │  .  │  -  │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ ESC │ NUM │ NAV │SHIFT│       │SPACE│ SYM │ FUN │ ALT │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ *
+ * NAV Layer (1)
+ * -------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │ --- │PGUP │C-S-C│C-S-V│C-S-T│C-TAB│                   │HOME │PGDN │PGUP │ END │ A-D │ DEL │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ --- │WIN+1│WIN+2│WIN+3│WIN+4│WIN+5│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │ C-Z │ C-X │ C-C │ C-V │ C-Y │                   │C-S-C│C-S-V│C-S-T│A-S-T│C-TAB│     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │SPACE│ RET │ BSP │ --- │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ * 
+ * SYM Layer (2)
+ * -------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  ~  │  *  │  (  │  )  │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ --- │  &  │  |  │  =  │  +  │  -  │                   │  ?  │  {  │  }  │  [  │  ]  │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ * 
+ * NUM Layer (3)
+ * -------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │ --- │  1  │  2  │  3  │  4  │  5  │                   │  6  │  7  │  8  │  9  │  0  │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ --- │ GUI │ ALT │CTRL │SHIFT│ TAB │                   │  +  │  4  │  5  │  6  │  *  │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │ --- │ --- │ --- │ --- │ --- │                   │  -  │  1  │  2  │  3  │  /  │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │SPACE│  0  │  .  │ --- │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ * 
+ * FUN Layer (4)
+ * -------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │ F1  │ F2  │ F3  │ F4  │ F5  │ F6  │                   │ F7  │ F8  │ F9  │ F10 │ F11 │ F12 │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ --- │ BT1 │ BT2 │ BT3 │ BT4 │ BT5 │                   │MUTE │VOL- │VOL+ │PLAY │NEXT │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │BTCLR│OUTG │ --- │ --- │ PWR │                   │CAPS │SLCK │PSCR │PREV │PAUS │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ * 
+ * ADJUST Layer (5) - Activated by NAV+SYM
+ * ---------------------------------------
+ * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+ * │RESET│BOOT │ --- │ --- │ --- │ --- │                   │ --- │ --- │ --- │ --- │BOOT │RESET│
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ --- │BTCLR│BTPRV│BTNXT│OUTG │ --- │                   │ --- │ --- │ --- │ --- │ --- │ --- │
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ *       │ --- │ --- │ --- │ --- │ PWR │                   │ --- │ --- │ --- │ --- │ --- │     
+ *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+ *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+ *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+ *
+ * Legend:
+ * - GA = GUI+A (hold for GUI, tap for A)
+ * - AS = ALT+S (hold for ALT, tap for S)
+ * - CD = CTRL+D (hold for CTRL, tap for D)
+ * - SF = SHIFT+F (hold for SHIFT, tap for F)
+ * - SJ = SHIFT+J (hold for SHIFT, tap for J)
+ * - CK = CTRL+K (hold for CTRL, tap for K)
+ * - AL = ALT+L (hold for ALT, tap for L)
+ * - GO = GUI+Ö (hold for GUI, tap for Ö)
+ * - AÄ = ALT+Ä (hold for ALT, tap for Ä)
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
 
-// Modified keymap based on personal experience, with some improvements based on Miryoku layout.
+#include "keys_sv.h"
 
-#define QWERTY  0
-#define COLDH   1
-#define NAV     2
-#define NUM     3
-#define PRGRM   4
-#define FUN     5
-#define ILLUST  6
-#define GAME    7
+/* Layer definitions */
+#define BASE 0  // Default layer
+#define NAV  1  // Navigation and editing
+#define SYM  2  // Symbols
+#define NUM  3  // Numbers and function keys
+#define FUN  4  // Function keys and system controls
+#define ADJT 5  // Adjust layer (activated by SYM+NAV)
 
-#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+/* Key position shorthand for combos */
+#define LT0 0  // Left-top row, leftmost key
+#define LT1 1
+#define LT2 2
+#define LT3 3
+#define LT4 4
+#define LT5 5
+#define RT0 6  // Right-top row, leftmost key
+#define RT1 7
+#define RT2 8
+#define RT3 9
+#define RT4 10
+#define RT5 11
+
+#define LM0 12  // Left-middle row, leftmost key
+#define LM1 13
+#define LM2 14
+#define LM3 15
+#define LM4 16
+#define LM5 17
+#define RM0 18  // Right-middle row, leftmost key
+#define RM1 19
+#define RM2 20
+#define RM3 21
+#define RM4 22
+#define RM5 23
+
+#define LB0 24  // Left-bottom row, leftmost key
+#define LB1 25
+#define LB2 26
+#define LB3 27
+#define LB4 28
+#define RB0 29  // Right-bottom row, leftmost key
+#define RB1 30
+#define RB2 31
+#define RB3 32
+#define RB4 33
+
+#define LH0 34  // Left thumb keys
+#define LH1 35
+#define LH2 36
+#define LH3 37
+#define RH0 38  // Right thumb keys
+#define RH1 39
+#define RH2 40
+#define RH3 41
+
+/* Behavior customizations */
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <125>;
+};
+
+&mt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <125>;
+};
 
 / {
-    behaviors {
-        as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            label = "AUTO_SHIFT";
-            #binding-cells = <2>;
-            tapping-term-ms = <135>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+    /* Combos - useful key combinations */
+    combos {
+        compatible = "zmk,combos";
+        
+        /* Programming symbol combos */
+        combo_equals {
+            timeout-ms = <35>;
+            key-positions = <LT1 LT3>;
+            bindings = <&kp SV_EQUAL>;
         };
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+        
+        combo_colon {
+            timeout-ms = <35>;
+            key-positions = <LM3 RM3>;
+            bindings = <&kp SV_COLON>;
         };
-        hmp: homerow_mods_pinky {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+        
+        combo_semicolon {
+            timeout-ms = <35>;
+            key-positions = <LM2 RM2>;
+            bindings = <&kp SV_SEMI>;
+        };
+        
+        combo_slash {
+            timeout-ms = <35>;
+            key-positions = <RT2 RT3>;
+            bindings = <&kp SV_BSLH>;
+        };
+        
+        combo_backslash {
+            timeout-ms = <35>;
+            key-positions = <RM2 RM3>;
+            bindings = <&kp SV_FSLH>;
+        };
+        
+        combo_pipe {
+            timeout-ms = <35>;
+            key-positions = <RB2 RB3>;
+            bindings = <&kp SV_PIPE>;
+        };
+          
+        /* Bracket combos */
+        combo_square_brackets {
+            timeout-ms = <35>;
+            key-positions = <LT5 RT0>;
+            bindings = <&bracket_macro_bracket>;
+        };
+        
+        combo_round_brackets {
+            timeout-ms = <35>;
+            key-positions = <LM5 RM0>;
+            bindings = <&bracket_macro_paren>;
+        };
+        
+        combo_curly_brackets {
+            timeout-ms = <35>;
+            key-positions = <LB4 RB0>;
+            bindings = <&bracket_macro_brace>;
+        };
+        
+        /* Special character combos */
+        combo_a_umlaut {
+            timeout-ms = <35>;
+            key-positions = <LM1 RM1>;
+            bindings = <&kp SV_A_UMLAUT>;
+        };
+        
+        combo_o_umlaut {
+            timeout-ms = <35>;
+            key-positions = <LT1 RT1>;
+            bindings = <&kp SV_O_UMLAUT>;
+        };
+        /* å modded to OP */
+        combo_a_ring {
+            timeout-ms = <35>;
+            key-positions = <RT3 RT4>;
+            bindings = <&kp SV_A_RING>;
+        };
+        
+        /* Convenient shortcuts */
+
+        combo_del {
+            timeout-ms = <35>;
+            key-positions = <RT4 RT5>;
+            bindings = <&kp DEL>;
+        };
+
+        combo_comment {
+            timeout-ms = <35>;
+            key-positions = <LT2 RT2>;
+            bindings = <&kp LC(LS(N7))>;
+        };
+        
+        combo_return {
+            timeout-ms = <35>;
+            key-positions = <LB3 LB4>;
+            bindings = <&kp RET>;
+        };
+    };
+    
+    /* Macros - useful sequences */
+    macros {
+        /* Bracket macros that insert matching pair and place cursor in the middle */
+        bracket_macro_paren: bracket_macro_paren {
+            label = "BRACKET_MACRO_PAREN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LPAR &kp SV_RPAR &kp LEFT>;
+        };
+        
+        bracket_macro_bracket: bracket_macro_bracket {
+            label = "BRACKET_MACRO_BRACKET";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LBKT &kp SV_RBKT &kp LEFT>;
+        };
+        
+        bracket_macro_brace: bracket_macro_brace {
+            label = "BRACKET_MACRO_BRACE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LBRC &kp SV_RBRC &kp LEFT>;
+        };
+        
+        /* Arrow macros for programming */
+        arrow_right: arrow_right {
+            label = "ARROW_RIGHT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_MINUS &kp SV_GT>;
+        };
+        
+        arrow_left: arrow_left {
+            label = "ARROW_LEFT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LT &kp SV_MINUS>;
+        };
+        
+        arrow_fat: arrow_fat {
+            label = "ARROW_FAT";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SV_EQUAL &kp SV_GT>;
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        // Combos for media player.
-        // I often switch songs while drawing, so I assign the
-        // combos on left hand side.
-
-        combo_med_next {
-            timeout-ms = <50>;
-            key-positions = <2 3>;
-            bindings = <&kp C_NEXT>;
+    /* Conditional layers */
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        adjust_layer {
+            if-layers = <NAV SYM>;
+            then-layer = <ADJT>;
         };
-        combo_med_prev {
-            timeout-ms = <50>;
-            key-positions = <1 2>;
-            bindings = <&kp C_PREV>;
-        };
-        combo_med_pp {
-            timeout-ms = <50>;
-            key-positions = <1 4>;
-            bindings = <&kp C_PP>;
-        };
-        combo_med_stop {
-            timeout-ms = <50>;
-            key-positions = <1 3>;
-            bindings = <&kp C_STOP>;
-        };
-        combo_med_vol_up {
-            timeout-ms = <50>;
-            key-positions = <2 13>;
-            bindings = <&kp C_VOL_UP>;
-        };
-        combo_med_vol_dn {
-            timeout-ms = <50>;
-            key-positions = <3 12>;
-            bindings = <&kp C_VOL_DN>;
-        };
-        combo_med_mute {
-            timeout-ms = <50>;
-            key-positions = <12 14>;
-            bindings = <&kp C_MUTE>;
-        };
-
-        // combo for toggling illust layer
-        combo_tg_illust {
-            timeout-ms = <50>;
-            key-positions = <21 22 23>;
-            bindings = <&tog ILLUST>;
-        };
-
-        // Combo for toggling the Colemak layout
-        combo_tg_colemak {
-            timeout-ms = <50>;
-            key-positions = <6 7 8>;
-            bindings = <&tog COLDH>;
-        };
-
-        // Combo for toggling minimal game layout
-        combo_tg_game {
-            timeout-ms = <50>;
-            key-positions = <7 8>;
-            bindings = <&tog GAME>;
-        };
-
-        // Combo for bluetooth control
-        // (i.e. switch among the devices).
-        combo_bt_next {
-            timeout-ms = <50>;
-            key-positions = <27 28>;
-            bindings = <&bt BT_NXT>;
-        };
-        combo_bt_prev {
-            timeout-ms = <50>;
-            key-positions = <26 27>;
-            bindings = <&bt BT_PRV>;
-        };
-        combo_bt_clr_all {
-            timeout-ms = <50>;
-            key-positions = <0 9>;
-            bindings = <&bt BT_CLR_ALL>;
-        };
-        combo_bt_out_tog {
-            timeout-ms = <50>;
-            key-positions = <4 5>;
-            bindings = <&out OUT_TOG>;
-        };
-
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        qwerty {
+        /* BASE layer - Colemak-DH with home row mods (GACS) */
+        default_layer {
             bindings = <
-    &kp Q       &kp W       &kp E       &kp R           &kp T           &kp Y       &kp U       &kp I       &kp O           &kp P
-    &hmp LGUI A &hm LALT S &hm LCTRL D &hm LSHFT F     &kp G           &kp H       &hm LSHFT J &hm LCTRL K  &hm LALT L      &hmp LGUI SQT
-    &kp Z       &hm RALT X  &kp C       &kp V           &kp B           &kp N       &kp M       &kp COMMA   &hm RALT DOT    &kp FSLH
-                            &kp DEL     &lt NUM SPACE   &lt PRGRM TAB     &kp BSPC    &lt NAV RET &lt FUN ESC
+        &kp ESC         &kp Q       &kp W      &kp E       &kp R       &kp T                      &kp Y      &kp U       &kp I       &kp O      &kp P         &kp BSPC
+        &mt LCTRL TAB   &mt LGUI A  &mt LALT S &mt LCTRL D &mt LSHFT F &kp G                      &kp H      &mt RSHFT J &mt RCTRL K &mt LALT L &mt RGUI SV_O_UMLAUT &mt RALT SV_A_UMLAUT
+                        &kp Z       &kp X      &kp C       &kp V       &kp B                      &kp N      &kp M       &kp COMMA   &kp DOT    &kp SV_MINUS
+                                    &kp ESC     &kp LSHFT&lt NAV SPACE  &lt NUM TAB               &kp SPACE  &lt SYM RET &lt FUN BSPC &kp LALT
             >;
+            
+            /*
+             * BASE Layer (0) - Default typing layer with home row mods
+             * --------------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ ESC │  Q  │  W  │  E  │  R  │  T  │                   │  Y  │  U  │  I  │  O  │  P  │ BSPC│
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │CTLTB│  GA │  AS │  CD │  SF │  G  │                   │  H  │  SJ │  CK │  AL │  GO │  AÄ │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │  Z  │  X  │  C  │  V  │  B  │                   │  N  │  M  │  ,  │  .  │  -  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+             *                   │ ESC │ NUM │ NAV │SHIFT│       │SPACE│ SYM │ FUN │ ALT │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * CTLTB = Hold for CTRL, tap for TAB
+             * GA = Hold for GUI, tap for A
+             * AS = Hold for ALT, tap for S
+             * CD = Hold for CTRL, tap for D
+             * SF = Hold for SHIFT, tap for F
+             * SJ = Hold for SHIFT, tap for J
+             * CK = Hold for CTRL, tap for K
+             * AL = Hold for ALT, tap for L
+             * GO = Hold for GUI, tap for Ö
+             * AÄ = Hold for ALT, tap for Ä
+             * NUM = Hold for NUM layer, tap for TAB
+             * NAV = Hold for NAV layer, tap for SPACE
+             * SYM = Hold for SYM layer, tap for RETURN
+             * FUN = Hold for FUN layer, tap for BACKSPACE
+             */
         };
 
-        colemak_dh {
-            bindings = <
-    &kp Q       &kp W       &kp F       &kp P           &kp B           &kp J       &kp L       &kp U       &kp Y           &kp SQT
-    &hmp LGUI A &hm LALT R  &hm LCTRL S &hm LSHFT T     &kp G           &kp M       &hm LSHFT N &hm LCTRL E &hm LALT I      &hmp LGUI O
-    &kp Z       &hm RALT X  &kp C       &kp D           &kp V           &kp K       &kp H       &kp COMMA   &hm RALT DOT    &kp FSLH
-                            &kp DEL     &lt NUM SPACE   &lt PRGRM TAB     &kp BSPC    &lt NAV RET &lt FUN ESC
-            >;
-        };
-
+        /* NAV layer - Navigation and editing controls */
         nav_layer {
             bindings = <
-    &kp HOME    &kp PG_UP       &kp UP      &kp PG_DN       &kp CAPS    &none       &none       &none       &none       &none
-    &kp END     &kp LEFT        &kp DOWN    &kp RIGHT       &kp INS     &none       &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI
-    &kp LC(Z)   &kp LC(LEFT)    &none       &kp LC(RIGHT)   &kp LC(Y)   &none       &none       &none       &none       &none
-                                &kp LC(X)   &kp LC(C)       &kp LC(V)   &none       &none       &none     
+        &trans      &kp PG_UP    &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(TAB))  &kp LC(TAB)            &kp HOME      &kp END     &kp PG_UP     &kp PG_DN         &kp LA(D)   &kp DEL
+        &trans      &kp LG(N1)   &kp LG(N2)    &kp LG(N3)    &kp LG(N4)       &kp LG(N5)             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT       &kp RET     &trans
+                    &kp LC(Z)    &kp LC(X)     &kp LC(C)     &kp LC(V)        &kp LG(N6)             &kp LC(LS(C)) &kp LC(LS(V)) &kp LC(LS(T)) &kp LA(LS(TAB)) &kp LC(TAB)
+                                 &trans      &trans          &trans           &trans                 &kp SPACE     &kp RET       &kp BSPC      &trans
             >;
+            
+            /*
+             * NAV Layer (1) - Navigation and editing
+             * --------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │PGUP │C-S-C│C-S-V│C-S-T│C-TAB│                   │HOME │ END │PGDN │PGUP │ A-D │ DEL │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │WIN+1│WIN+2│WIN+3│WIN+4│WIN+5│                   │LEFT │DOWN │ UP  │RIGHT│ RET │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ C-Z │ C-X │ C-C │ C-V │ C-Y │                   │C-S-C│C-S-V│C-S-T│A-S-T│C-TAB│     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │SPACE│ RET │ BSP │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * PGUP = Page Up
+             * PGDN = Page Down
+             * C-S-C = Ctrl+Shift+C (Copy in terminal)
+             * C-S-V = Ctrl+Shift+V (Paste in terminal)
+             * C-S-T = Ctrl+Shift+Tab (Previous tab)
+             * C-TAB = Ctrl+Tab (Next tab)
+             * WIN+1-5 = Windows/GUI+1-5 (For i3wm workspace switching)
+             * A-D = Alt+D (Address bar in browsers)
+             * C-Z = Ctrl+Z (Undo)
+             * C-X = Ctrl+X (Cut)
+             * C-C = Ctrl+C (Copy)
+             * C-V = Ctrl+V (Paste)
+             * C-Y = Ctrl+Y (Redo)
+             * C-S-V = Ctrl+Shift+V (Paste in terminal)
+             * C-S-T = Ctrl+Shift+T (New tab)
+             * A-S-T = Alt+Shift+Tab (Previous application)
+             */
         };
 
+        /* SYM layer - Programming symbols for easy access */
+        symbols_layer {
+            bindings = <
+        &trans      &kp SV_EXCL &kp SV_AT   &kp SV_HASH  &kp SV_DOLLAR &kp SV_PRCNT           &kp SV_CARET &kp SV_TILDE  &kp SV_ASTRK &kp SV_LPAR &kp SV_RPAR &trans
+        &trans      &kp SV_AMPS &kp SV_PIPE &kp SV_EQUAL &kp SV_PLUS   &kp SV_MINUS           &kp SV_QMARK &kp SV_LBRC  &kp SV_RBRC  &kp SV_LBKT &kp SV_RBKT &trans
+                    &arrow_left &arrow_right &arrow_fat  &kp SV_COLON  &kp SV_SEMI            &kp SV_DQT   &kp SV_SQT   &kp SV_LT    &kp SV_GT   &kp SV_UNDER
+                                            &trans       &trans        &trans     &trans      &trans       &trans       &trans       &trans
+            >;
+            
+            /*
+             * SYM Layer (2) - Symbols for programming
+             * ---------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │  !  │  @  │  #  │  $  │  %  │                   │  ^  │  ~  │  *  │  (  │  )  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │  &  │  |  │  =  │  +  │  -  │                   │  ?  │  {  │  }  │  [  │  ]  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ <-  │ ->  │ =>  │  :  │  ;  │                   │  "  │  '  │  <  │  >  │  _  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             * 
+             * <- = Left arrow macro (types "<-")
+             * -> = Right arrow macro (types "->")
+             * => = Fat arrow macro (types "=>")
+             * All other symbols on this layer are direct symbol mappings for programming:
+             * !, @, #, $, %, ^, ~, *, (, ), &, |, =, +, -, ?, {, }, [, ], :, ;, ", ', <, >, _
+             */
+        };
+
+        /* NUM layer - Numbers and arithmetic */
         num_layer {
             bindings = <
-    &none       &none       &none       &none       &none       AS(LBKT)        AS(N7)      AS(N8)      AS(N9)  AS(RBKT)
-    &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   &none       AS(EQUAL)       AS(N4)      AS(N5)      AS(N6)  AS(SEMI)
-    &none       &none       &none       &none       &none       AS(GRAVE)       AS(N1)      AS(N2)      AS(N3)  AS(BSLH)
-                            &none       &trans      &none       &as LPAR DOT    &as RPAR N0 AS(MINUS)
+        &trans      &kp N1      &kp N2     &kp N3      &kp N4      &kp N5                     &kp N6      &kp N7      &kp N8      &kp N9     &kp N0      &trans
+        &trans      &kp LGUI    &kp LALT   &kp LCTRL   &kp LSHFT   &kp TAB                    &kp KP_PLUS &kp N4      &kp N5      &kp N6     &kp KP_MULTIPLY &trans
+                    &none       &none      &none       &none       &none                      &kp KP_MINUS &kp N1     &kp N2      &kp N3     &kp KP_DIVIDE
+                                           &trans      &trans      &trans      &trans        &kp SPACE   &kp N0      &kp DOT     &trans
             >;
+            
+            /*
+             * NUM Layer (3) - Numbers and numeric keypad
+             * -----------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ --- │  1  │  2  │  3  │  4  │  5  │                   │  6  │  7  │  8  │  9  │  0  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │ GUI │ ALT │CTRL │SHIFT│ TAB │                   │  +  │  4  │  5  │  6  │  *  │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ --- │ --- │ --- │ --- │ --- │                   │  -  │  1  │  2  │  3  │  /  │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │SPACE│  0  │  .  │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * The top row provides number keys 1-0 in sequence
+             * The right side is arranged as a numeric keypad with:
+             * - Mathematical operators: + (plus), * (multiply), - (minus), / (divide)
+             * - Number keys arranged in a calculator/numpad style pattern
+             * - Decimal point (.)
+             * - The left side middle row provides all modifiers: GUI, ALT, CTRL, SHIFT for easy chording
+             */
         };
 
-       prgrm_layer {
-           bindings = <
-    &none       &none       &none       &none       &none       &none   &none       &none       &none   &none
-    &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   &none       &none   AS(LBKT)    AS(RBKT)    &none   AS(SEMI)
-    &none       &none       &none       &none       &none       &none   &kp EXCL    &kp EQUAL   &none   &kp FSLH
-                            &trans      &none       &none       &kp LPAR    &kp RPAR    &kp UNDER
-            >;
-        };
-
-        fun_layer {
+        /* FUN layer - Function keys and system controls */
+        func_layer {
             bindings = <
-    &kp F12 &kp F7  &kp F8      &kp F9      &kp PSCRN       &none   &none       &none       &none       &none
-    &kp F11 &kp F4  &kp F5      &kp F6      &kp SLCK        &none   &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI
-    &kp F10 &kp F1  &kp F2      &kp F3      &kp PAUSE_BREAK &none   &none       &none       &none       &none
-                    &kp K_APP   &kp SPACE   &kp TAB         &none   &none       &trans
+        &kp F1      &kp F2      &kp F3     &kp F4      &kp F5      &kp F6                     &kp F7      &kp F8      &kp F9      &kp F10    &kp F11     &kp F12
+        &trans      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4         &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &kp C_PP  &kp C_NEXT  &trans
+                    &bt BT_CLR  &out OUT_TOG &none    &none       &ext_power EP_TOG          &kp CAPS    &kp SLCK    &kp PSCRN   &kp C_PREV &kp PAUSE_BREAK
+                                            &trans     &trans      &trans      &trans         &trans      &trans      &trans      &trans
             >;
+            
+            /*
+             * FUN Layer (4) - Function keys and system controls
+             * ------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │ F1  │ F2  │ F3  │ F4  │ F5  │ F6  │                   │ F7  │ F8  │ F9  │ F10 │ F11 │ F12 │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │ BT1 │ BT2 │ BT3 │ BT4 │ BT5 │                   │MUTE │VOL- │VOL+ │PLAY │NEXT │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │BTCLR│OUTG │ --- │ --- │ PWR │                   │CAPS │SLCK │PSCR │PREV │PAUS │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * F1-F12 = Function keys
+             * BT1-BT5 = Bluetooth profile selection (1-5)
+             * BTCLR = Clear Bluetooth bonds
+             * OUTG = Toggle output (USB/Bluetooth)
+             * PWR = Toggle external power
+             * MUTE = Volume mute
+             * VOL- = Volume down
+             * VOL+ = Volume up
+             * PLAY = Play/pause media
+             * NEXT = Next track
+             * CAPS = Caps lock
+             * SLCK = Scroll lock
+             * PSCR = Print screen
+             * PREV = Previous track
+             * PAUS = Pause break
+             */
         };
 
-        illust_fun_layer {
+        /* ADJUST layer - Only accessible by holding SYM+NAV */
+        adjust_layer {
             bindings = <
-    &kp F12 &kp F7  &kp F8          &kp F9          &kp LBKT        &none   &none   &none   &none   &none
-    &kp F11 &kp F4  &kp F5          &kp F6          &kp RBKT        &none   &none   &none   &none   &none
-    &kp F10 &kp F1  &kp F2          &kp F3          &kp BSLH        &none   &none   &none   &none   &none
-                    &sk LC(LSHFT)   &mt LSHFT LC(Z) &mt LCTRL LC(Y) &none   &none   &none
+        &sys_reset  &bootloader &none       &none       &none      &none                     &none       &none       &none       &none       &bootloader &sys_reset
+        &none       &bt BT_CLR  &bt BT_PRV  &bt BT_NXT  &out OUT_TOG &none                   &none       &none       &none       &none       &none       &none
+                    &none       &none       &none       &none       &ext_power EP_TOG        &none       &none       &none       &none       &none
+                                            &trans      &trans      &trans      &trans       &trans      &trans      &trans      &trans
             >;
+            
+            /*
+             * ADJUST Layer (5) - System functions (activated by NAV+SYM)
+             * ----------------------------------------------------------
+             * ┌─────┬─────┬─────┬─────┬─────┬─────┐                   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+             * │RESET│BOOT │ --- │ --- │ --- │ --- │                   │ --- │ --- │ --- │ --- │BOOT │RESET│
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             * │ --- │BTCLR│BTPRV│BTNXT│OUTG │ --- │                   │ --- │ --- │ --- │ --- │ --- │ --- │
+             * ├─────┼─────┼─────┼─────┼─────┼─────┤                   ├─────┼─────┼─────┼─────┼─────┼─────┤
+             *       │ --- │ --- │ --- │ --- │ PWR │                   │ --- │ --- │ --- │ --- │ --- │     
+             *       └─────┴─────┼─────┼─────┼─────┼─────┐       ┌─────┼─────┼─────┼─────┼─────┴─────┘     
+             *                   │ --- │ --- │ --- │ --- │       │ --- │ --- │ --- │ --- │
+             *                   └─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┘
+             *
+             * RESET = System reset
+             * BOOT = Bootloader mode (for flashing keyboard firmware)
+             * BTCLR = Clear all Bluetooth bonds
+             * BTPRV = Select previous Bluetooth profile
+             * BTNXT = Select next Bluetooth profile
+             * OUTG = Toggle output mode (USB/Bluetooth)
+             * PWR = Toggle external power
+             * 
+             * This layer is only accessible when holding both NAV and SYM layer keys simultaneously
+             */
         };
-
-        game_layer {
-            bindings = <
-    &kp F12 &kp Q  &kp W  &kp E  &kp R              &kp LGUI   &kp U   &kp I   &kp O   &kp LCTRL
-    &kp F1 &kp A  &kp S  &kp D  &kp F              &kp LALT   &kp J   &kp K   &kp L   &kp LSHFT
-    &none &kp Z  &kp X  &kp C  &kp V                 &none   &kp LEFT   &kp UP   &kp DOWN   &kp RIGHT
-                    &kp DEL &kp SPACE &kp TAB   &kp BSPC   &kp RET   &kp ESC
-            >;
-        };
-
     };
-};
+}; 

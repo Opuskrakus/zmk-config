@@ -4,11 +4,21 @@
 #include <dt-bindings/zmk/outputs.h>
 #include "keys_sv.h"
 
+#define MAC_LCUB LS(LA(N8))
+#define MAC_RCUB LS(LA(N9))
+#define MAC_LBKT LA(N8)
+#define MAC_RBKT LA(N9)
+#define MAC_PIPE LA(N7)
+#define MAC_BSLH LS(LA(N7))
+
 #define BASE 0
-#define NAV  1
-#define SYM  2
-#define NUM  3
-#define FUN  4
+#define MAC_BASE 1
+#define NAV  2
+#define SYM  3
+#define NUM  4
+#define FUN  5
+#define MAC_NAV 6
+#define MAC_SYM 7
 
 / {
     behaviors {
@@ -17,9 +27,20 @@
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
+        };
+        hlt: hold_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_LAYER_TAP";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <0>;
+            flavor = "tap-preferred"; // or "tap-preferred", "hold-preferred" "balanced"
+            bindings = <&mo>, <&kp>;
         };
     };
 
@@ -28,10 +49,19 @@
 
         default_layer {
             bindings = <
-                &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
-                &hm LGUI A  &hm LALT S  &hm LCTRL D &hm LSHIFT F &kp G          &kp H       &hm RSHIFT J &hm RCTRL K &hm RALT L &hm RGUI SV_SEMI
-                &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp SV_COMMA   &kp SV_DOT     &kp SV_FSLH
-                                        &lt NAV TAB &lt FUN ESC &kp RET         &lt SYM SPACE &lt NUM BSPC &kp DEL
+                &kp Q       &kp W       &kp E       &kp R        &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
+                &hm LGUI A  &hm LALT S  &hm LCTRL D &hm LSHIFT F &kp G           &kp H       &hm RSHIFT J &hm RCTRL K &hm RALT L &hm RGUI SV_SEMI
+                &kp Z       &kp X       &kp C       &kp V        &kp B           &kp N       &kp M       &kp SV_COMMA   &kp SV_DOT     &kp SV_FSLH
+                                        &hlt FUN TAB &lt NAV ESC  &kp LSHIFT         &hlt SYM SPACE &hlt NUM RET &kp BSPC
+            >;
+        };
+
+        mac_default_layer {
+            bindings = <
+                &kp Q       &kp W       &kp E       &kp R        &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
+                &hm LGUI A  &hm LALT S  &hm LCTRL D &hm LSHIFT F &kp G           &kp H       &hm RSHIFT J &hm RCTRL K &hm RALT L &hm RGUI SV_SEMI
+                &kp Z       &kp X       &kp C       &kp V        &kp B           &kp N       &kp M       &kp SV_COMMA   &kp SV_DOT     &kp SV_FSLH
+                                        &hlt FUN TAB &lt MAC_NAV ESC  &kp LSHIFT         &hlt MAC_SYM SPACE &hlt NUM RET &kp BSPC
             >;
         };
 
@@ -40,13 +70,13 @@
                 &trans      &trans      &trans      &trans      &trans          &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS
                 &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SV_SQT
                 &trans      &trans      &trans      &trans      &trans          &kp SV_BSLH    &kp SV_PIPE &kp SV_TILDE &kp SV_DLLR &kp SV_PRCNT
-                                        &trans      &trans      &trans          &trans      &kp DELETE  &trans
+                                        &trans      &trans      &trans          &trans       &trans &kp DELETE 
             >;
         };
 
         sym_layer {
             bindings = <
-                &kp SV_LBRC &kp SV_RBRC &kp SV_UNDER &kp SV_COLON &kp SV_DQT                &trans      &trans      &trans      &trans      &trans
+                &kp SV_LEFT_BRACE &kp SV_RIGHT_BRACE &kp SV_UNDER &kp SV_COLON &kp SV_DQT                &trans      &trans      &trans      &trans      &trans
                 &kp SV_LPAR    &kp SV_RPAR    &kp SV_MINUS   &kp SV_EQUAL  &kp SV_SQT       &trans      &kp RSHIFT  &kp RCTRL   &kp RALT    &kp RGUI
                 &kp SV_LBKT    &kp SV_RBKT    &kp SV_PLUS &kp SV_STAR  &kp SV_HASH          &trans      &trans      &trans      &trans      &trans
                                         &trans      &trans      &trans                        &trans      &trans      &trans
@@ -56,8 +86,8 @@
         num_layer {
             bindings = <
                 &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &trans      &kp RSHIFT  &kp RCTRL   &kp RALT    &kp RGUI
-                &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
+                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &trans      &kp N4      &kp N5      &kp N6    &kp RGUI
+                &trans      &trans      &trans      &trans      &trans          &trans      &kp N1      &kp N2      &kp N3      &trans
                                         &trans      &trans      &trans          &trans      &trans      &trans
             >;
         };
@@ -66,8 +96,26 @@
             bindings = <
                 &kp F1      &kp F2      &kp F3      &kp F4      &kp F5          &kp F6      &kp F7      &kp F8      &kp F9      &kp F10
                 &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp F11     &kp F12     &trans      &trans      &trans
-                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR  &trans      &trans      &trans      &trans      &trans
+                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR  &tog MAC_BASE &trans      &trans      &trans      &trans
                                         &trans      &trans      &trans          &trans      &trans      &trans
+            >;
+        };
+
+        mac_nav_layer {
+            bindings = <
+                &trans      &trans      &trans      &trans      &trans          &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS
+                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SV_SQT
+                &trans      &trans      &trans      &trans      &trans          &kp MAC_BSLH    &kp MAC_PIPE &kp SV_TILDE &kp SV_DLLR &kp SV_PRCNT
+                                        &trans      &trans      &trans          &trans       &trans &kp DELETE 
+            >;
+        };
+
+        mac_sym_layer {
+            bindings = <
+                &kp MAC_LCUB &kp MAC_RCUB &kp SV_UNDER &kp SV_COLON &kp SV_DQT                &trans      &trans      &trans      &trans      &trans
+                &kp SV_LPAR    &kp SV_RPAR    &kp SV_MINUS   &kp SV_EQUAL  &kp SV_SQT       &trans      &kp RSHIFT  &kp RCTRL   &kp RALT    &kp RGUI
+                &kp MAC_LBKT    &kp MAC_RBKT    &kp SV_PLUS &kp SV_STAR  &kp SV_HASH          &trans      &trans      &trans      &trans      &trans
+                                        &trans      &trans      &trans                        &trans      &trans      &trans
             >;
         };
     };

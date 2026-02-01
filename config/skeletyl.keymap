@@ -128,8 +128,7 @@
     magic_shift: magic_shift {
       compatible = "zmk,behavior-hold-tap";
       label = "MAGIC_SHIFT";
-      /* &kp takes 1 binding-cell (keycode), magic_shift_tap takes 0 */
-      #binding-cells = <1>;
+      #binding-cells = <2>;
       flavor = "balanced";
       tapping-term-ms = <200>;
       quick-tap-ms = <175>;
@@ -148,8 +147,7 @@
     smart_num: smart_num {
       compatible = "zmk,behavior-hold-tap";
       label = "SMART_NUM";
-      /* &mo takes 1 binding-cell (layer), num_dance takes 0 */
-      #binding-cells = <1>;
+      #binding-cells = <2>;
       flavor = "balanced";
       tapping-term-ms = <200>;
       quick-tap-ms = <175>;
@@ -201,7 +199,7 @@
         &kp Q          &kp W          &kp E          &kp R          &kp T                &kp Y          &kp U          &kp I          &kp O          &kp P
         &hml LGUI A    &hml LALT S    &hml LCTRL D   &hml LSHFT F   &kp G                &kp H          &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SV_SEMI
         &kp Z          &kp X          &kp C          &kp V          &kp B                &kp N          &kp M          &kp SV_COMMA    &kp SV_DOT      &kp SV_FSLH
-                                     &lt FN TAB      &lt NAV ESC     &magic_shift LSHFT    &kp RET        &smart_num NUM  &bs_del
+                                     &lt FN TAB      &lt NAV ESC     &magic_shift LSHFT 0  &kp RET        &smart_num NUM 0  &bs_del
       >;
     };
 

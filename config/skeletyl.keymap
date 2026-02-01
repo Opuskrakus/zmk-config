@@ -1,122 +1,256 @@
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+
+/* Key position labels (LT0..LH2/RH2 etc) */
+#include <zmk-helpers/key-labels/36.h>
+
+/* Swedish symbol macros (SV_*) */
 #include "keys_sv.h"
 
-#define MAC_LCUB LS(LA(N8))
-#define MAC_RCUB LS(LA(N9))
-#define MAC_LBKT LA(N8)
-#define MAC_RBKT LA(N9)
-#define MAC_PIPE LA(N7)
-#define MAC_BSLH LS(LA(N7))
+/* urob modules */
+#include <behaviors/unicode.dtsi>
+#include <behaviors/num_word.dtsi>
 
-#define BASE 0
-#define MAC_BASE 1
-#define NAV  2
-#define SYM  3
-#define NUM  4
-#define FUN  5
-#define MAC_NAV 6
-#define MAC_SYM 7
+/* Local split-out config */
+#include "mouse.dtsi"
+#include "leader.dtsi"
+
+#define DEF 0
+#define NAV 1
+#define FN  2
+#define NUM 3
+#define SYS 4
+#define MOUSE 5
+
+#define ___ &trans
+#define XXX &none
+
+/* Homerow mod position groups (used for hold-trigger-key-positions) */
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
+
+/* Global tweaks (urob-style) */
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl {
+  ignore-modifiers;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <200>;
+  quick-tap-ms = <175>;
+};
+
+/* Unicode defaults: macOS is the most likely given your host machine */
+&uc {
+  default-mode = <UC_MODE_MACOS>;
+};
 
 / {
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        hlt: hold_layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOLD_LAYER_TAP";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <0>;
-            flavor = "tap-preferred"; // or "tap-preferred", "hold-preferred" "balanced"
-            bindings = <&mo>, <&kp>;
-        };
+  behaviors {
+    /* Timeless HRMs (balanced + positional hold-tap, trigger on release) */
+    hml: hml {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HML";
+      #binding-cells = <2>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <175>;
+      require-prior-idle-ms = <150>;
+      bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      hold-trigger-on-release;
     };
 
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            bindings = <
-                &kp Q       &kp W       &kp E       &kp R        &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
-                &hm LGUI A  &hm LALT S  &hm LCTRL D &hm LSHIFT F &kp G           &kp H       &hm RSHIFT J &hm RCTRL K &hm RALT L &hm RGUI SV_SEMI
-                &kp Z       &kp X       &kp C       &kp V        &kp B           &kp N       &kp M       &kp SV_COMMA   &kp SV_DOT     &kp SV_FSLH
-                                        &hlt FUN TAB &lt NAV ESC  &kp LSHIFT         &hlt SYM SPACE &hlt NUM RET &kp BSPC
-            >;
-        };
-
-        mac_default_layer {
-            bindings = <
-                &kp Q       &kp W       &kp E       &kp R        &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
-                &hm LGUI A  &hm LALT S  &hm LCTRL D &hm LSHIFT F &kp G           &kp H       &hm RSHIFT J &hm RCTRL K &hm RALT L &hm RGUI SV_SEMI
-                &kp Z       &kp X       &kp C       &kp V        &kp B           &kp N       &kp M       &kp SV_COMMA   &kp SV_DOT     &kp SV_FSLH
-                                        &hlt FUN TAB &lt MAC_NAV ESC  &kp LSHIFT         &hlt MAC_SYM SPACE &hlt NUM RET &kp BSPC
-            >;
-        };
-
-        nav_layer {
-            bindings = <
-                &trans      &trans      &trans      &trans      &trans          &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SV_SQT
-                &trans      &trans      &trans      &trans      &trans          &kp SV_BSLH    &kp SV_PIPE &kp SV_TILDE &kp SV_DLLR &kp SV_PRCNT
-                                        &trans      &trans      &trans          &trans       &trans &kp DELETE 
-            >;
-        };
-
-        sym_layer {
-            bindings = <
-                &kp SV_LEFT_BRACE &kp SV_RIGHT_BRACE &kp SV_UNDER &kp SV_COLON &kp SV_DQT                &trans      &trans      &trans      &trans      &trans
-                &kp SV_LPAR    &kp SV_RPAR    &kp SV_MINUS   &kp SV_EQUAL  &kp SV_SQT       &trans      &kp RSHIFT  &kp RCTRL   &kp RALT    &kp RGUI
-                &kp SV_LBKT    &kp SV_RBKT    &kp SV_PLUS &kp SV_STAR  &kp SV_HASH          &trans      &trans      &trans      &trans      &trans
-                                        &trans      &trans      &trans                        &trans      &trans      &trans
-            >;
-        };
-
-        num_layer {
-            bindings = <
-                &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &trans      &kp N4      &kp N5      &kp N6    &kp RGUI
-                &trans      &trans      &trans      &trans      &trans          &trans      &kp N1      &kp N2      &kp N3      &trans
-                                        &trans      &trans      &trans          &trans      &trans      &trans
-            >;
-        };
-
-        fun_layer {
-            bindings = <
-                &kp F1      &kp F2      &kp F3      &kp F4      &kp F5          &kp F6      &kp F7      &kp F8      &kp F9      &kp F10
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp F11     &kp F12     &trans      &trans      &trans
-                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR  &tog MAC_BASE &trans      &trans      &trans      &trans
-                                        &trans      &trans      &trans          &trans      &trans      &trans
-            >;
-        };
-
-        mac_nav_layer {
-            bindings = <
-                &trans      &trans      &trans      &trans      &trans          &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &kp INS
-                &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHIFT  &trans          &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SV_SQT
-                &trans      &trans      &trans      &trans      &trans          &kp MAC_BSLH    &kp MAC_PIPE &kp SV_TILDE &kp SV_DLLR &kp SV_PRCNT
-                                        &trans      &trans      &trans          &trans       &trans &kp DELETE 
-            >;
-        };
-
-        mac_sym_layer {
-            bindings = <
-                &kp MAC_LCUB &kp MAC_RCUB &kp SV_UNDER &kp SV_COLON &kp SV_DQT                &trans      &trans      &trans      &trans      &trans
-                &kp SV_LPAR    &kp SV_RPAR    &kp SV_MINUS   &kp SV_EQUAL  &kp SV_SQT       &trans      &kp RSHIFT  &kp RCTRL   &kp RALT    &kp RGUI
-                &kp MAC_LBKT    &kp MAC_RBKT    &kp SV_PLUS &kp SV_STAR  &kp SV_HASH          &trans      &trans      &trans      &trans      &trans
-                                        &trans      &trans      &trans                        &trans      &trans      &trans
-            >;
-        };
+    hmr: hmr {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HMR";
+      #binding-cells = <2>;
+      flavor = "balanced";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <175>;
+      require-prior-idle-ms = <150>;
+      bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
+      hold-trigger-on-release;
     };
+
+    /* Tri-state swapper (Alt-Tab) */
+    swapper: swapper {
+      compatible = "zmk,behavior-tri-state";
+      label = "SWAPPER";
+      #binding-cells = <0>;
+      bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+      ignored-layers = <NAV>;
+    };
+
+    /* Smart mouse toggle (tri-state): turns off on left-hand key press */
+    smart_mouse: smart_mouse {
+      compatible = "zmk,behavior-tri-state";
+      label = "SMART_MOUSE";
+      #binding-cells = <0>;
+      bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+      ignored-key-positions = <KEYS_R THUMBS>;
+      ignored-layers = <MOUSE>;
+    };
+
+    /* Shift-repeat (adaptive key): repeat after any alpha */
+    shift_repeat: shift_repeat {
+      compatible = "zmk,behavior-adaptive-key";
+      label = "SHIFT_REPEAT";
+      #binding-cells = <0>;
+      bindings = <&sk LSHFT>;
+
+      repeat {
+        trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
+        bindings = <&key_repeat>;
+        max-prior-idle-ms = <1200>;
+        strict-modifiers;
+      };
+    };
+
+    /* Magic shift: tap = repeat/sticky-shift, shifted tap = caps-word, hold = shift */
+    magic_shift_tap: magic_shift_tap {
+      compatible = "zmk,behavior-mod-morph";
+      label = "MAGIC_SHIFT_TAP";
+      #binding-cells = <0>;
+      bindings = <&shift_repeat>, <&caps_word>;
+      mods = <(MOD_LSFT)>;
+    };
+
+    magic_shift: magic_shift {
+      compatible = "zmk,behavior-hold-tap";
+      label = "MAGIC_SHIFT";
+      /* &kp takes 1 binding-cell (keycode), magic_shift_tap takes 0 */
+      #binding-cells = <1>;
+      flavor = "balanced";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <175>;
+      bindings = <&kp>, <&magic_shift_tap>;
+    };
+
+    /* Smart num: tap = num-word, double-tap = sticky NUM, hold = momentary NUM */
+    num_dance: num_dance {
+      compatible = "zmk,behavior-tap-dance";
+      label = "NUM_DANCE";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&num_word NUM>, <&sl NUM>;
+    };
+
+    smart_num: smart_num {
+      compatible = "zmk,behavior-hold-tap";
+      label = "SMART_NUM";
+      /* &mo takes 1 binding-cell (layer), num_dance takes 0 */
+      #binding-cells = <1>;
+      flavor = "balanced";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <175>;
+      bindings = <&mo>, <&num_dance>;
+    };
+
+    /* Tap: bspc | Shift+tap: del */
+    bs_del: bs_del {
+      compatible = "zmk,behavior-mod-morph";
+      label = "BS_DEL";
+      #binding-cells = <0>;
+      bindings = <&kp BSPC>, <&kp DEL>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /* Paren combos: tap = () | Shift+tap = <> */
+    lpar_lt: lpar_lt {
+      compatible = "zmk,behavior-mod-morph";
+      label = "LPAR_LT";
+      #binding-cells = <0>;
+      bindings = <&kp SV_LPAR>, <&kp SV_LT>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    rpar_gt: rpar_gt {
+      compatible = "zmk,behavior-mod-morph";
+      label = "RPAR_GT";
+      #binding-cells = <0>;
+      bindings = <&kp SV_RPAR>, <&kp SV_GT>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /* Sticky shift + leader */
+    leader_sft: leader_sft {
+      compatible = "zmk,behavior-macro";
+      label = "LEADER_SFT";
+      #binding-cells = <0>;
+      wait-ms = <0>;
+      tap-ms = <5>;
+      bindings = <&sk LSHFT &leader>;
+    };
+  };
+
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+      bindings = <
+        &kp Q          &kp W          &kp E          &kp R          &kp T                &kp Y          &kp U          &kp I          &kp O          &kp P
+        &hml LGUI A    &hml LALT S    &hml LCTRL D   &hml LSHFT F   &kp G                &kp H          &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SV_SEMI
+        &kp Z          &kp X          &kp C          &kp V          &kp B                &kp N          &kp M          &kp SV_COMMA    &kp SV_DOT      &kp SV_FSLH
+                                     &lt FN TAB      &lt NAV ESC     &magic_shift LSHFT    &kp RET        &smart_num NUM  &bs_del
+      >;
+    };
+
+    nav_layer {
+      bindings = <
+        &kp LA(F4)     ___            &kp LS(TAB)    &swapper        ___                 &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        &kp INS
+        &sk LGUI       &sk LALT       &sk LCTRL      &sk LSHFT       ___                 &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      &kp SV_SQT
+        ___            ___            ___            ___             ___                 &kp SV_BSLH     &kp SV_PIPE    &kp SV_TILDE    &kp SV_DLLR     &kp SV_PRCNT
+                                     ___            ___             ___                 ___            &kp K_CANCEL   ___
+      >;
+    };
+
+    fn_layer {
+      bindings = <
+        &kp F1         &kp F2         &kp F3         &kp F4          &kp F5              &kp F6         &kp F7         &kp F8         &kp F9         &kp F10
+        ___            ___            ___            ___             ___                 &kp F11        &kp F12        ___            ___            ___
+        &out OUT_USB   &out OUT_BLE   &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2        &bt BT_SEL 3   &bt BT_CLR     ___            ___            ___
+                                     ___            ___             ___                 ___            ___            ___
+      >;
+    };
+
+    num_layer {
+      bindings = <
+        ___            &kp N7         &kp N8         &kp N9          ___                 ___            ___            ___            ___            ___
+        ___            &kp N4         &kp N5         &kp N6          ___                 ___            ___            ___            ___            ___
+        ___            &kp N1         &kp N2         &kp N3          ___                 ___            ___            ___            ___            ___
+                                     ___            ___             ___                 ___            ___            ___
+      >;
+    };
+
+    sys_layer {
+      bindings = <
+        &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_CLR          ___            ___            ___            ___            ___
+        ___            ___            ___            ___             &bootloader         &bootloader    ___            ___            ___            ___
+        ___            ___            ___            ___             &sys_reset          &sys_reset     ___            ___            ___            ___
+                                     ___            ___             ___                 ___            ___            ___
+      >;
+    };
+
+    mouse_layer {
+      bindings = <
+        ___            ___            ___            ___             ___                 ___            &kp PG_UP      U_MS_U         &kp PG_DN      ___
+        ___            ___            ___            ___             ___                 U_WH_L         U_MS_L         U_MS_D         U_MS_R         U_WH_R
+        ___            ___            ___            ___             ___                 ___            &mkp LCLK      &mkp MCLK      &mkp RCLK      ___
+                                     ___            ___             ___                 ___            U_WH_U         U_WH_D
+      >;
+    };
+  };
 };
+
+/* Combos must come after layer constants + behaviors are defined */
+#include "combos.dtsi"

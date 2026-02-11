@@ -12,11 +12,12 @@
  *         └─────────────┘ └─────────────┘
  */
 
-#define COMBO_TERM_FAST 18
-#define COMBO_TERM_SLOW 30
+#define COMBO_TERM_FAST 25
+#define COMBO_TERM_SLOW 70
 
 #define COMBO_IDLE_FAST 150
-#define COMBO_IDLE_SLOW 50
+/* Lower idle requirement makes roll-style combos easier */
+#define COMBO_IDLE_SLOW 0
 
 / {
   combos {

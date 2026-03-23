@@ -1,0 +1,59 @@
+// Example 1: Balanced Ergonomic Layout
+// Philosophy: Maximize comfort with home row mods, balanced thumb clusters
+// Focus: All-around typing efficiency with strong home position
+// Thumb Strategy: Left = layers/modifiers, Right = space/navigation actions
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE 0
+#define NAV  1
+#define NUM  2
+#define SYM  3
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+    // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &mt LGUI A    &mt LALT S    &mt LCTRL D   &mt LSHFT F   &kp G             &kp H         &mt RSHFT J   &mt RCTRL K   &mt RALT L    &mt RGUI SEMI
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                     &mo NUM       &mo SYM       &kp BSPC          &kp SPACE     &mo NAV       &kp RET
+    //                               ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+         &kp ESC       &kp TAB       &kp LS(TAB)   &kp DEL       &none             &kp HOME      &kp PG_DN     &kp PG_UP     &kp END       &kp INS
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &none             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp CAPS
+         &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(Y)         &none         &none         &none         &none         &none
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+
+        num_layer {
+            bindings = <
+         &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &kp F11           &kp F12       &kp RSHFT     &kp RCTRL     &kp RALT      &kp RGUI
+         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
+                                     &trans        &trans        &trans            &kp N0        &trans        &trans
+            >;
+        };
+
+        sym_layer {
+            bindings = <
+         &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT         &kp CARET     &kp AMPS      &kp STAR      &kp LPAR      &kp RPAR
+         &kp GRAVE     &kp TILDE     &kp BSLH      &kp PIPE      &kp SQT           &kp DQT       &kp LBKT      &kp RBKT      &kp LBRC      &kp RBRC
+         &none         &none         &kp UNDER     &kp MINUS     &kp PLUS          &kp EQUAL     &kp LT        &kp GT        &kp QMARK     &kp COLON
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+    };
+};

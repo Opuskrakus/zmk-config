@@ -1,0 +1,61 @@
+// Example 5: Vim/Modal Editor Optimized
+// Philosophy: Optimize for vim motions and modal editing workflows
+// Focus: Easy access to HJKL navigation, common vim commands
+// Thumb Strategy: Modal layer access + leader key equivalent
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE 0
+#define NAV  1
+#define NUM  2
+#define VIM  3
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+    // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &mt LGUI A    &mt LALT S    &mt LCTRL D   &mt LSHFT F   &kp G             &kp H         &mt RSHFT J   &mt RCTRL K   &mt RALT L    &mt RGUI SEMI
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                     &lt VIM TAB   &lt NUM ESC   &kp BSPC          &kp SPACE     &lt NAV RET   &kp COLON
+    //                               ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        nav_layer {
+            // Vim-like navigation on home row
+            bindings = <
+         &kp ESC       &kp LC(W)     &kp LC(R)     &kp LC(T)     &none             &kp HOME      &kp LC(U)     &kp LC(D)     &kp END       &kp LC(O)
+         &kp LC(A)     &none         &kp DEL       &none         &kp LC(G)         &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp DLLR
+         &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(B)         &kp N0        &none         &none         &none         &none
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+
+        num_layer {
+            bindings = <
+         &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &kp F11           &kp F12       &kp MINUS     &kp EQUAL     &kp LBKT      &kp RBKT
+         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
+                                     &trans        &trans        &trans            &kp N0        &trans        &trans
+            >;
+        };
+
+        vim_layer {
+            // Special vim commands and symbols
+            bindings = <
+         &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT         &kp CARET     &kp AMPS      &kp STAR      &kp LPAR      &kp RPAR
+         &kp GRAVE     &kp SQT       &kp DQT       &kp FSLH      &kp QMARK         &kp LT        &kp GT        &kp LBRC      &kp RBRC      &kp PIPE
+         &kp TILDE     &none         &kp COLON     &kp BSLH      &none             &kp UNDER     &kp MINUS     &kp PLUS      &kp EQUAL     &kp BSLH
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+    };
+};

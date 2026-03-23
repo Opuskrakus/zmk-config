@@ -1,0 +1,60 @@
+// Example 9: Number & Data Entry Focused
+// Philosophy: Optimize for numerical input, spreadsheets, data work
+// Focus: Easy numpad access, symbols for formulas, quick math operations
+// Thumb Strategy: Number layer constantly available, quick symbol access
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE 0
+#define NUM  1
+#define NAV  2
+#define SYM  3
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+    // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &mt LGUI A    &mt LALT S    &mt LCTRL D   &mt LSHFT F   &kp G             &kp H         &mt RSHFT J   &mt RCTRL K   &mt RALT L    &mt RGUI SEMI
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                     &lt NAV TAB   &mo NUM       &kp BSPC          &kp SPACE     &lt SYM RET   &kp ESC
+    //                               ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        num_layer {
+            // Optimized numpad layout with operators easily accessible
+            bindings = <
+         &kp STAR      &kp N7        &kp N8        &kp N9        &kp PLUS          &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
+         &kp FSLH      &kp N4        &kp N5        &kp N6        &kp MINUS         &kp F11       &kp RSHFT     &kp RCTRL     &kp RALT      &kp RGUI
+         &kp EQUAL     &kp N1        &kp N2        &kp N3        &kp DOT           &kp F1        &kp F2        &kp F3        &kp F4        &kp F5
+                                     &kp N0        &trans        &kp BSPC          &kp RET       &kp COMMA     &kp DOT
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+         &kp ESC       &kp TAB       &kp LS(TAB)   &none         &none             &kp HOME      &kp PG_DN     &kp PG_UP     &kp END       &kp INS
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &none             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &none
+         &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(Y)         &none         &none         &none         &none         &kp DEL
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+
+        sym_layer {
+            bindings = <
+         &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT         &kp CARET     &kp AMPS      &kp STAR      &kp LPAR      &kp RPAR
+         &kp LBKT      &kp RBKT      &kp LBRC      &kp RBRC      &kp PIPE          &kp SQT       &kp DQT       &kp LT        &kp GT        &kp BSLH
+         &kp GRAVE     &kp TILDE     &kp UNDER     &kp MINUS     &kp PLUS          &kp EQUAL     &kp COLON     &kp SEMI      &kp QMARK     &kp FSLH
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+    };
+};

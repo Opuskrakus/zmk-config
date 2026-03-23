@@ -1,0 +1,61 @@
+// Example 10: Writer & Prose Focused
+// Philosophy: Optimize for natural language, not code
+// Focus: Punctuation easily accessible, comfortable for long typing sessions
+// Thumb Strategy: Space bar dominant, modifiers accessible but not intrusive
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE 0
+#define NAV  1
+#define NUM  2
+#define PUNC 3
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+    // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &mt LGUI A    &mt LALT S    &mt LCTRL D   &mt LSHFT F   &kp G             &kp H         &mt RSHFT J   &mt RCTRL K   &mt RALT L    &kp SEMI
+    // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+         &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                     &lt NUM TAB   &lt PUNC ESC  &kp BSPC          &kp SPACE     &lt NAV RET   &kp LSHFT
+    //                               ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        nav_layer {
+            // Word processing shortcuts and navigation
+            bindings = <
+         &none         &none         &none         &none         &none             &kp HOME      &kp LC(LEFT)  &kp LC(RIGHT) &kp END       &kp LC(BSPC)
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &none             &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp DEL
+         &kp LC(Z)     &kp LC(X)     &kp LC(C)     &kp LC(V)     &kp LC(Y)         &kp LC(A)     &kp LC(S)     &kp LC(F)     &none         &none
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+
+        num_layer {
+            bindings = <
+         &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
+         &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     &kp F11           &kp F12       &kp MINUS     &kp EQUAL     &kp LBKT      &kp RBKT
+         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+
+        punc_layer {
+            // Common punctuation for writing
+            bindings = <
+         &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT         &kp CARET     &kp AMPS      &kp STAR      &kp SQT       &kp DQT
+         &kp COMMA     &kp DOT       &kp SEMI      &kp COLON     &kp QMARK         &kp LPAR      &kp RPAR      &kp LBKT      &kp RBKT      &kp FSLH
+         &kp GRAVE     &kp TILDE     &kp UNDER     &kp MINUS     &kp PLUS          &kp EQUAL     &kp LBRC      &kp RBRC      &kp LT        &kp GT
+                                     &trans        &trans        &trans            &trans        &trans        &trans
+            >;
+        };
+    };
+};

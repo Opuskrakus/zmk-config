@@ -214,36 +214,42 @@
             timeout-ms = <50>;
             key-positions = <SL3 SL4>;  // E+R
             bindings = <&kp SV_EQUAL>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_colon {
             timeout-ms = <50>;
             key-positions = <ML3 MR3>;  // D+L
             bindings = <&kp SV_COLON>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_semicolon {
             timeout-ms = <50>;
             key-positions = <ML2 MR2>;  // S+K
             bindings = <&kp SV_SEMI>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_slash {
             timeout-ms = <50>;
             key-positions = <MR2 MR3>;  // K+L
             bindings = <&kp SV_FSLH>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_backslash {
             timeout-ms = <50>;
             key-positions = <SR2 SR3>;  // I+O
             bindings = <&kp SV_BSLH>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_pipe {
             timeout-ms = <50>;
             key-positions = <FR3 FR4>;  // .+-
             bindings = <&kp SV_PIPE>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
           
         /* Bracket combos */
@@ -251,18 +257,21 @@
             timeout-ms = <50>;
             key-positions = <ML5 MR0>;  // G+H
             bindings = <&bracket_macro_paren>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_square_brackets {
             timeout-ms = <50>;
             key-positions = <SL5 SR0>;  // T+Y
             bindings = <&bracket_macro_bracket>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         combo_curly_brackets {
             timeout-ms = <50>;
             key-positions = <FL5 FR0>;  // B+N
             bindings = <&bracket_macro_brace>;
+            layers = <NAV SYM NUM FUN ADJT>;
         };
         
         /* Special character combos */
@@ -370,7 +379,7 @@
                 &kp TAB         &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P           &kp DEL
                 &kp TAB         &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J           &kp K           &kp L           &kp SV_O_UMLAUT  &kp RET
                 &kp LSHFT       &kp Z           &kp X           &kp C           &kp V           &kp B           &kp N           &kp M           &kp COMMA       &kp DOT         &kp SV_MINUS    &mt LALT SV_A_UMLAUT
-                &kp LCTRL       &kp LEFT_ALT    &kp LGUI        &lt NUM TAB     &lt NAV SPACE   &kp SPACE       &kp SPACE       &lt SYM RET     &lt FUN LEFT    &kp DOWN        &kp UP          &kp RIGHT
+                &kp LCTRL       &lt NUM TAB     &kp LEFT_ALT    &kp LGUI        &lt NAV         &kp SPACE       &kp SPACE       &lt SYM         &lt FUN LEFT    &kp DOWN        &kp UP          &kp RIGHT
             >;
             
             /*
@@ -410,12 +419,12 @@
             bindings = <
                 &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans          &trans
                 &trans          &kp PG_UP       &kp LC(LS(C))   &kp UP          &kp LC(LS(TAB)) &kp LC(TAB)     &kp HOME        &kp PG_DN       &kp PG_UP       &kp END         &kp LA(D)       &kp DEL
-                &trans          &kp PG_DN       &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(TAB)     &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp RET         &trans
+                &trans          &kp LG(N1)      &kp LG(N2)      &kp LG(N3)      &kp LG(N4)      &kp LG(N5)      &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp RET         &trans
                 &trans          &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &kp LC(Y)       &kp LC(LS(C))   &kp LC(LS(V))   &kp LC(LS(T))   &kp LA(LS(TAB)) &kp LC(TAB)     &trans
                 &trans          &trans          &trans          &trans          &trans          &kp SPACE       &kp SPACE       &kp RET         &kp BSPC        &trans          &trans          &trans
             >;
             
-            /*
+            /* &kp PG_DN       &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(TAB)     &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp RET         &trans
              * NAV Layer (1) - Navigation and editing controls
              * ----------------------------------------------
              * ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐

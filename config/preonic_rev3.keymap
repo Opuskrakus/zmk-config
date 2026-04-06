@@ -424,7 +424,7 @@
                 &trans          &trans          &trans          &trans          &trans          &kp SPACE       &kp SPACE       &kp RET         &kp BSPC        &trans          &trans          &trans
             >;
             
-            /* &kp PG_DN       &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(TAB)     &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp RET         &trans
+            /* 
              * NAV Layer (1) - Navigation and editing controls
              * ----------------------------------------------
              * ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐

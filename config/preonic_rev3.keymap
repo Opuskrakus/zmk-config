@@ -313,52 +313,6 @@
         };
     };
     
-    /* Macros - useful sequences */
-    macros {
-        /* Bracket macros that insert matching pair and place cursor in the middle */
-        bracket_macro_paren: bracket_macro_paren {
-            label = "BRACKET_MACRO_PAREN";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_LPAR &kp SV_RPAR &kp LEFT>;
-        };
-        
-        bracket_macro_bracket: bracket_macro_bracket {
-            label = "BRACKET_MACRO_BRACKET";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_LBKT &kp SV_RBKT &kp LEFT>;
-        };
-        
-        bracket_macro_brace: bracket_macro_brace {
-            label = "BRACKET_MACRO_BRACE";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_LBRC &kp SV_RBRC &kp LEFT>;
-        };
-        
-        /* Arrow macros for programming */
-        arrow_right: arrow_right {
-            label = "ARROW_RIGHT";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_MINUS &kp SV_GT>;
-        };
-        
-        arrow_left: arrow_left {
-            label = "ARROW_LEFT";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_LT &kp SV_MINUS>;
-        };
-        
-        arrow_fat: arrow_fat {
-            label = "ARROW_FAT";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SV_EQUAL &kp SV_GT>;
-        };
-    };
 
     /* Conditional layers */
     conditional_layers {

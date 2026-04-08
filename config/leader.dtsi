@@ -20,11 +20,10 @@
   }; \
  };
 
-/* German umlauts */
-ZMK_LEADER_SEQUENCE(de_ae, &uc UC_DE_AE, A) /* ä/Ä */
-ZMK_LEADER_SEQUENCE(de_oe, &uc UC_DE_OE, O) /* ö/Ö */
-ZMK_LEADER_SEQUENCE(de_ue, &uc UC_DE_UE, U) /* ü/Ü */
-ZMK_LEADER_SEQUENCE(de_eszett, &uc UC_DE_SS, S) /* ß */
+/* Swedish vowels (native keycodes) */
+ZMK_LEADER_SEQUENCE(sv_ae, &kp SV_A_UMLAUT, A) /* ä/Ä */
+ZMK_LEADER_SEQUENCE(sv_oe, &kp SV_O_UMLAUT, O) /* ö/Ö */
+ZMK_LEADER_SEQUENCE(sv_aa, &kp SV_A_RING, P)   /* å/Å */
 
 /* Greek letters */
 ZMK_LEADER_SEQUENCE(el_alpha, &uc UC_EL_ALPHA, E A) /* α */

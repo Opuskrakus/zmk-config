@@ -210,15 +210,15 @@
         &kp Q          &kp W          &kp E          &kp R          &kp T                &kp Y          &kp U          &kp I          &kp O          &kp P
         &hml LGUI A    &hml LALT S    &hml LCTRL D   &hml LSHFT F   &kp G                &kp H          &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SV_SEMI
         &kp Z          &kp X          &kp C          &kp V          &kp B                &kp N          &kp M          &kp SV_COMMA    &kp SV_DOT      &kp SV_FSLH
-                                     &lt FN TAB        &magic_shift LSHFT 0    &lt_spc NAV SPACE    &smart_num NUM 0 &bs_del  &kp RET
+                                     &lt FN TAB        &magic_shift LSHFT 0    &lt NAV BSPC          &kp SPACE        &smart_num NUM 0  &kp RET
       >;
     };
 
     nav_layer {
       bindings = <
-        &kp LA(F4)     ___            &kp LS(TAB)    &swapper        ___                 &kp HOME       &kp PG_DN      &kp PG_UP      &kp END        &kp INS
-        &sk LGUI       &sk LALT       &sk LCTRL      &sk LSHFT       ___                 &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      &kp SV_SQT
-        ___            ___            ___            ___             ___                 &kp SV_BSLH     &kp SV_PIPE    &kp SV_TILDE    &kp SV_DLLR     &kp SV_PRCNT
+        &kp LA(F4)     ___            &kp LS(TAB)    &swapper        ___                 &kp HOME        &kp PG_DN       &kp PG_UP      &kp END         &kp INS
+        &kp LG(N5)     &kp LG(N4)     &kp LG(N3)     &kp LG(N2)      &kp LG(N1)          &kp LEFT        &kp DOWN        &kp UP         &kp RIGHT       &kp SV_SQT
+        &sk LGUI       &sk LALT       &sk LCTRL      &sk LSHFT       ___                 &kp SV_BSLH     &kp SV_PIPE     &kp SV_TILDE   &kp SV_DLLR     &kp SV_PRCNT
                                      ___            ___             &kp K_CANCEL        ___            ___            ___
       >;
     };

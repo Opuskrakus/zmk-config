@@ -153,6 +153,31 @@
       layers = <NAV>;
     };
 
+    /* Swedish vowels - right hand, NUM layer only */
+    combo_a_ring {
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <RT3 RT4>;
+      bindings = <&kp SV_A_RING>;
+      layers = <NUM>;
+    };
+
+    combo_o_umlaut {
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <RM3 RM4>;
+      bindings = <&kp SV_O_UMLAUT>;
+      layers = <NUM>;
+    };
+
+    combo_a_umlaut {
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <RB3 RB4>;
+      bindings = <&kp SV_A_UMLAUT>;
+      layers = <NUM>;
+    };
+
     /* Vertical combos - left hand */
     combo_at {
       timeout-ms = <COMBO_TERM_SLOW>;

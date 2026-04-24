@@ -153,6 +153,15 @@
       layers = <NAV>;
     };
 
+    /* SYS layer access - NAV layer only */
+    combo_sys {
+      timeout-ms = <COMBO_TERM_FAST>;
+      require-prior-idle-ms = <COMBO_IDLE_FAST>;
+      key-positions = <LT2 LT0>;
+      bindings = <&sl SYS>;
+      layers = <NAV>;
+    };
+
     /* Swedish vowels - right hand, NUM layer only */
     combo_a_ring {
       timeout-ms = <COMBO_TERM_FAST>;

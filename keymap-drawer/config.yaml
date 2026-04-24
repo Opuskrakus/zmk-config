@@ -1,0 +1,40 @@
+# keymap-drawer config for the skeletyl (3x5 split + 3 thumb keys per side).
+#
+# This file is consumed by:
+#   uvx --from keymap-drawer keymap -c keymap-drawer/config.yaml draw <yaml>
+
+parse_config:
+  # Map "safe" tokens emitted by scripts/preprocess_keymap.py (devicetree-
+  # special characters that cannot be expanded literally) back to symbols.
+  # Also gives friendly labels to custom behaviors so the rendered SVG is
+  # readable instead of showing raw "&behavior arg" strings.
+  raw_binding_map:
+    "&kp DT_LT": "<"
+    "&kp DT_GT": ">"
+    "&kp DT_LBRC": "{"
+    "&kp DT_RBRC": "}"
+    "&kp DT_BSLH": "\\"
+    "&kp DT_SEMI": ";"
+    "&kp DT_DQT": '"'
+    "&kp DT_AMPS": "&"
+    "&kp DT_UNDER": "_"
+
+    # Custom behavior labels
+    "&swapper": {t: "Alt-Tab", h: "swap"}
+    "&smart_mouse": {t: "MOUSE", h: "smart"}
+    "&shift_repeat": {t: "↻", h: "shift"}
+    "&num_dance": {t: "NUM", h: "dance"}
+    "&leader": "LEADER"
+    "&leader_sft": {t: "LEADER", h: "shift"}
+    "&bootloader": "BOOT"
+    "&sys_reset": "RESET"
+    "&caps_word": "CAPS"
+    "&key_repeat": "↻"
+
+draw_config:
+  # 1 column = stacked layers; 2 makes a 2x3 grid for 6 layers.
+  n_columns: 2
+  separate_combo_diagrams: false
+  draw_key_sides: true
+  dark_mode: auto
+  footer_text: "skeletyl keymap (urob-style)"

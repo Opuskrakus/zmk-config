@@ -97,7 +97,7 @@
       label = "SMART_MOUSE";
       #binding-cells = <0>;
       bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-      ignored-key-positions = <KEYS_R THUMBS>;
+      ignored-key-positions = <LT1 LT2 KEYS_R THUMBS>;
       ignored-layers = <MOUSE>;
     };
 
@@ -210,7 +210,7 @@
         &kp Q          &kp W          &kp E          &kp R          &kp T                &kp Y          &kp U          &kp I          &kp O          &kp P
         &hml LGUI A    &hml LALT S    &hml LCTRL D   &hml LSHFT F   &kp G                &kp H          &hmr RSHFT J    &hmr RCTRL K    &hmr RALT L     &hmr RGUI SV_SEMI
         &kp Z          &kp X          &kp C          &kp V          &kp B                &kp N          &kp M          &kp SV_COMMA    &kp SV_DOT      &kp SV_FSLH
-                                     &lt FN TAB        &magic_shift LSHFT 0    &lt NAV BSPC          &kp SPACE        &smart_num NUM 0  &kp RET
+                                     &lt FN TAB      &lt NAV BSPC   &magic_shift LSHFT 0         &kp SPACE        &smart_num NUM 0  &kp RET
       >;
     };
 
@@ -226,7 +226,7 @@
     fn_layer {
       bindings = <
         &kp F1         &kp F2         &kp F3         &kp F4          &kp F5              &kp F6         &kp F7         &kp F8         &kp F9         &kp F10
-        ___            ___            ___            ___             ___                 &kp F11        &kp F12        ___            ___            ___
+      ___            ___            ___            ___             ___                 &kp F11        &kp F12        &kp LC(LA(DEL)) ___            ___
         &out OUT_USB   &out OUT_BLE   &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2        &bt BT_SEL 3   &bt BT_CLR     ___            ___            ___
                                      ___            ___             ___                 ___            ___            ___
       >;
